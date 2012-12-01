@@ -1,0 +1,9 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/parashuram/Documents/workspace/conference",
+			"folder_exclude_patterns": ["node_modules"]
+		}
+	]
+}
