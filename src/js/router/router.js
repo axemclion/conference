@@ -12,14 +12,25 @@
 			"page/:page": "showPage",
 			"*actions": "defaultRoute" // Backbone will try match the route above first
 		},
+
+		removeViews: function() {
+			_.each(app.currentViews, function(view, i, list){
+				view.remove();
+			});
+		},
+
 		defaultRoute: function(actions) {
-			alert(actions);
+			console.log("Default Nav Route", actions);
+			if(!actions) {
+				this.showPage();
+			}
 		},
 
 		showPage: function(page) {
 			loading(50);
 			page = page || "home";
-			console.log("Navigating to ", page)
+			this.removeViews();
+			console.log("Navigating to ", page);
 			$("#content").load("pages/" + page + ".html", function() {
 				loading(100);
 			});

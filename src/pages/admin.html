@@ -6,13 +6,20 @@
 				<div class="control-group">
 					<label class="control-label" for="session_<%= name%>"><%= name%></label>
 					<div class="controls">
-						<input type="text" id="session_<%= name%>" value = "value-<%=name%>"></div>
+						<input type="text" id="session_<%= name%>" value = ""></div>
 				</div>
 			<% }); %></script>
 		<div class = "content"></div>
 		<div class="control-group">
 			<div class="controls">
-				<button type="submit" class="btn">Submit</button>
+				<button type="submit" class="btn btn-large btn-primary">Create</button>
+				<button type="submit" class="btn btn-large">Duplicate</button>
+				<div class = "alert alert-success hide span3">
+					Successfully saved
+				</div>
+				<div class = "alert alert-error hide span3">
+					Error Saving Data
+				</div>
 			</div>
 		</div>
 	</form>

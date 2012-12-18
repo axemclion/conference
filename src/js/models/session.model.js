@@ -2,21 +2,19 @@
 	"use strict";
 	app.Model = app.Model || {};
 	app.Model.Session = Backbone.Model.extend({
+		idAttribute: "_id",
 		defaults: {
 			title: undefined,
 			time: {
-				start: new Date,
+				start: new Date(),
 				end: new Date()
 			},
-			speaker: undefined,
+			room : undefined,
 			location: undefined,
-			prefs: {
-				like: undefined,
-				attend: undefined,
-				notes: [],
-				rating: undefined
-			},
-			slideUrl: undefined
+			slideUrl: undefined,
+			rating : undefined,
+			comments : [],
+			tags : []
 		}
 	});
 

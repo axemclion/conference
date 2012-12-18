@@ -29,7 +29,13 @@
 					return string.charAt(0).toUpperCase() + string.substring(1).replace(/([A-Z])/g, " $1");
 				}
 			});
+			this.initModel();
 			this.render();
+			app.sessionList.on("sync", this.render);
+		},
+
+		initModel: function() {
+			this.newSession = new app.Model.Session();
 		},
 
 		render: function() {
@@ -47,7 +53,7 @@
 			}));
 		},
 
-		save: function() {
+		getFormValues: function() {
 			var me = this;
 
 			function getValues(obj) {
@@ -61,16 +67,40 @@
 				});
 				return result;
 			}
-			var session = new app.Model.Session(getValues(this.fields));
-			session.on("all", function() {
-				console.log(arguments);
+			return this.sanitize(getValues(this.fields));
+		},
+
+		sanitize: function(val) {
+			if(!_.isArray(val.tags)) {
+				val.tags = _.compact(val.tags.split(/[\s;,]/g));
+			}
+			if(!_.isDate(val.time.start)) {
+				val.time.start = new Date(val.time.start);
+			}
+			if(!_.isDate(val.time.end)) {
+				val.time.end = new Date(val.time.end);
+			}
+			return val;
+		},
+
+		save: function(e) {
+			this.$(".submit").html("Update");
+			this.newSession.save(this.getFormValues(), {
+				success: _.bind(this.saved, this, true),
+				error: _.bind(this.saved, this, false)
 			});
-			session.save();
+			this.initModel();
 			return false;
 		},
 
+		saved: function(status) {
+			this.$(".alert").hide();
+			this.$(".alert-" + (status ? "success" : "error")).show();
+			this.$(".alert").delay("5000").fadeOut();
+		},
+
 		events: {
-			"click button": "save"
+			"click .submit": "save"
 		}
 	});
 
