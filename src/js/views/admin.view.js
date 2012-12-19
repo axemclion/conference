@@ -31,11 +31,13 @@
 			});
 			this.initModel();
 			this.render();
-			app.sessionList.on("sync", this.render);
 		},
 
 		initModel: function() {
-			this.newSession = new app.Model.Session();
+			this.newSession = new app.Model.Session({
+				server : CONFERENCE.server,
+				db : CONFERENCE.db.sessions
+			});
 		},
 
 		render: function() {
@@ -84,7 +86,6 @@
 		},
 
 		save: function(e) {
-			this.$(".submit").html("Update");
 			this.newSession.save(this.getFormValues(), {
 				success: _.bind(this.saved, this, true),
 				error: _.bind(this.saved, this, false)
@@ -100,7 +101,7 @@
 		},
 
 		events: {
-			"click .submit": "save"
+			"click button": "save"
 		}
 	});
 

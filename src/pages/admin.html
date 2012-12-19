@@ -1,6 +1,5 @@
-<div class = "admin">
+<div class = "admin" id = "admin">
 	<form class = "form-horizontal">
-
 		<script type = "text/html">
 			<% _.each(fields, function(name) { %>
 				<div class="control-group">
@@ -23,9 +22,9 @@
 			</div>
 		</div>
 	</form>
+	<script type="text/javascript">
+		new app.View.Admin({
+			el : "#admin"
+		})
+	</script>
 </div>
-<script type="text/javascript">
-	new app.View.Admin({
-		el : ".admin"
-	});
-</script>

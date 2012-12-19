@@ -9,33 +9,28 @@
 
 	app.Router = Backbone.Router.extend({
 		routes: {
-			"page/:page": "showPage",
-			"*actions": "defaultRoute" // Backbone will try match the route above first
-		},
-
-		removeViews: function() {
-			_.each(app.currentViews, function(view, i, list){
-				view.remove();
-			});
+			"*actions": "defaultRoute"
 		},
 
 		defaultRoute: function(actions) {
-			console.log("Default Nav Route", actions);
-			if(!actions) {
-				this.showPage();
-			}
-		},
+			var path = _.compact(actions.split("/"));
+			console.log("Showing - ", path);
 
-		showPage: function(page) {
-			loading(50);
-			page = page || "home";
-			this.removeViews();
-			console.log("Navigating to ", page);
-			$("#content").load("pages/" + page + ".html", function() {
-				loading(100);
-			});
+			(function loadPathSegment(i) {
+				if(i < path.length) {
+					$(".level" + i + "Nav").children("li").removeClass("active");
+					$(".level" + i + "Nav").find("a[href*=" + path[i] + "]").parent("li").addClass("active");
+					$(".level" + i + "Content").load("pages/" + path[i] + ".html", function() {
+						loadPathSegment(i + 1);
+					});
+				} else {
+					var content = $(".level" + i + "Content").children("link[rel=defaultContent]");
+					if(content.length > 0) {
+						window.location = content.attr("href");
+					}
+				}
+			}(0));
 		}
-
 	});
 
 }(jQuery, window.app = window.app || {}));

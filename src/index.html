@@ -14,29 +14,34 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="#">Conference</a>
+				<a class="brand" href="#home/schedule">Conference</a>
 				<div class="nav-collapse collapse" style="height: 0px;">
-					<ul class="nav">
-						<li class="active">
-							<a href="#page/home">Home</a>
+					<ul class="nav level1Nav">
+						<li>
+							<a href="#home/schedule">Home</a>
 						</li>
 						<li>
-							<a href="#page/admin">Admin</a>
+							<a href="#admin">Admin</a>
 						</li>
 						<li>
-							<a href="#page/about">About</a>
+							<a href="#about">About</a>
 						</li>
-						<li>Online</li>
 					</ul>
+					<div class="btn-group pull-right btn-medium">
+						<button class="btn btn-mini">Action</button>
+						<button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid" id = "content"></div>
-	<div id = "loading">
-		<div class="progress progress-striped active span5 offset4" id = "loading">
-			<div class="bar" style="width: 40%;"></div>
-		</div>
+	<div class="container-fluid level0Content">
+		<link rel = "defaultContent" href = "#home"/>
 	</div>
 	<script type="text/javascript" src="./lib/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="./lib/underscore-min.js"></script>

@@ -2,7 +2,7 @@ Backbone.ajaxSync = Backbone.sync;
 Backbone.sync = (function() {
 	return function(method, model, options) {
 		console.log("Sync - ", method, model, options);
-		Pouch(CONFERENCE.server + "/" + CONFERENCE.db.sessions, function(err, db) {
+		Pouch(model.get("server") + "/" + model.get("db"), function(err, db) {
 			window.axe = db;
 			switch(method) {
 			case "read":
