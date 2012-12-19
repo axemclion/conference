@@ -50,7 +50,7 @@
 				});
 				return result;
 			}
-			return this.sanitize(getValues(this.fields));
+			return this.sanitize(getValues(this.newSession.attributes));
 		},
 
 		sanitize: function(val) {

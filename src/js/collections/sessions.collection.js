@@ -16,6 +16,12 @@
 					}, session.speaker);
 				}
 			}));
+		},
+
+		getSessions: function(){
+			return _.filter(this.toJSON(), function(session){
+				return !!session.speaker.name;
+			});
 		}
 
 	});

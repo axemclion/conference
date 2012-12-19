@@ -1,3 +1,23 @@
 <div class = "sessions">
 	<h1>Sessions</h1>
+	<script type = "text/html">
+		<li class = "well" id = "session-<%=s.id%>">
+			<h3>
+				<%= s.name %>
+			</h3>
+			<p>
+				<%= s.description %>
+			</p>
+			<p>
+			</p>
+		</li>
+		</script>
+	<ul class = "sessionContent">
+	</ul>
 </div>
+<script type = "text/javascript">
+	new app.View.Sessions({
+		el : ".sessions",
+		collection : app.sessionList
+	});
+</script>
