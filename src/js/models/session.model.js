@@ -2,20 +2,23 @@
 	"use strict";
 	app.Model = app.Model || {};
 	app.Model.Session = Backbone.Model.extend({
-		idAttribute: "_id",
 		defaults: {
-			title: undefined,
+			name: '',
+			description: '',
+			speaker: {
+				name: '',
+				bio: '',
+				url: '',
+				pic: 'http://'
+			},
 			time: {
 				start: new Date(),
 				end: new Date()
 			},
-			room : undefined,
-			location: undefined,
-			slideUrl: undefined,
-			rating : undefined,
-			comments : [],
-			tags : []
+			slideUrl: '',
+			room: "*",
+			tags: [],
+			category: ''
 		}
 	});
-
 }(jQuery, window.app = window.app || {}));

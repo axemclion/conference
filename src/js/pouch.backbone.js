@@ -10,7 +10,7 @@ Backbone.sync = (function() {
 			switch(method) {
 			case "read":
 				if(model.id) {
-					throw "Not implemented yet"
+					throw "Not implemented yet";
 				} else {
 					db.allDocs({
 						include_docs: true
@@ -37,7 +37,7 @@ Backbone.sync = (function() {
 						return;
 					}
 					//console.log("Updating ", model.toJSON(), model._rev);
-					db.put($.extend(model.toJSON(), {
+					db.put(_.extend(model.toJSON(), {
 						_rev: resp._rev,
 						_id: resp._id
 					}), function(err, updatedData) {

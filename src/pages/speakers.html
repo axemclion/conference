@@ -1,3 +1,22 @@
-<div class = "sessions">
+<div class = "speakers">
 	<h1>Speakers</h1>
+	<script type = "text/html">
+		<li class = "span4" id = "speaker-<%=s.id%>">
+			<img data-src = "<%= s.pic %>"/>
+			<h3>
+				<%= s.name %>
+			</h3>
+			<p>
+				<a href = "#home/sessions/<%= s.id%>"><%= s.sessionName %>	</a>
+			</p>
+		</li>
+		</script>
+	<ul class = "thumbnails speakerContent">
+	</ul>
 </div>
+<script type = "text/javascript">
+	new app.View.Speakers({
+		el : ".speakers",
+		collection : app.sessionList
+	});
+</script>

@@ -3,25 +3,6 @@
 	app.View = app.View || {};
 
 	app.View.Admin = Backbone.View.extend({
-		fields: {
-			name: "name",
-			description: "description",
-			speaker: {
-				name: "speakerName",
-				bio: "speakerBio",
-				url: "speakerUrl",
-				pic: "speakerPic"
-			},
-			time: {
-				start: "startTime",
-				end: "endTime"
-			},
-			slideUrl: "slideUrl",
-			room: "room",
-			tags: "tags",
-			category: "category"
-		},
-
 		initialize: function(config) {
 			this.template = this.$("script").text().trim().replace(/\t/g, "");
 			_.mixin({
@@ -41,17 +22,17 @@
 		},
 
 		render: function() {
-			function flatten(obj) {
+			function flatten(group, obj) {
 				return _.flatten(_.map(obj, function(val, key) {
 					if(_.isObject(val)) {
-						return flatten(val);
+						return flatten(key, val);
 					} else {
-						return val;
+						return group + " " + key;
 					}
 				}));
 			}
-			this.$(".content").html(_.template(this.template, {
-				fields: flatten(this.fields)
+			this.$(".adminContent").html(_.template(this.template, {
+				fields: flatten('', _.omit(this.newSession.attributes, ['server', 'db']))
 			}));
 		},
 
