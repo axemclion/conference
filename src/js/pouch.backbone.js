@@ -1,11 +1,26 @@
 Backbone.ajaxSync = Backbone.sync;
 Backbone.sync = (function() {
-	return function(method, model, options) {
-		console.log("Sync - ", method, model, options);
-		Pouch(model.get("server") + "/" + model.get("db"), function(err, db) {
-			window.axe = db;
+	return function(method, model, options, error) {
+		console.log("Sync - ", method, model, options, error);
+		Pouch((model.server || model.get("server")) + "/" + (model.db || model.get("db")), function(err, db) {
+			if(err) {
+				options.error(err);
+				return;
+			}
 			switch(method) {
 			case "read":
+				if(model.id) {
+					throw "Not implemented yet"
+				} else {
+					db.allDocs({
+						include_docs: true
+					}, function(err, resp) {
+						options.success(_.map(resp.rows, function(a) {
+							a.doc.id = a.doc._id;
+							return a.doc;
+						}));
+					});
+				}
 				break;
 			case "create":
 				db[model.id ? "put" : "post"](model, function(err, resp) {
