@@ -5,17 +5,25 @@
 	app.View.Speakers = Backbone.View.extend({
 		initialize: function() {
 			this.lineItem = _.template(this.$("script").text().trim().replace(/\t/g, ""));
-			this.collection.on("reset", _.bind(this.render, this));
-			this.collection.fetch();
-		},
-		render: function() {
-			_.each(this.collection.getSpeakers(), _.bind(this.addSpeaker, this));
+			_.bindAll(this);
+			this.render();
+			this.listenTo(this.collection, "reset", this.render);
 		},
 
-		addSpeaker: function(session) {
+		render: function() {
+			if(this.options.item) {
+				this.addSession([this.collection.get(this.options.item)]);
+			} else {
+				_.each(this.collection.getSessions(), this.addSession);
+			}
+		},
+
+		onSpeaker: function(e, speakerId) {},
+
+		addSpeaker: function(s) {
 			this.$(".speakerContent").append(this.lineItem({
-				s: session
-			}))
+				s: s
+			}));
 		}
 	});
 }(jQuery, Backbone, window.app = window.app || {}));

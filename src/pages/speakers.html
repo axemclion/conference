@@ -1,22 +1,24 @@
 <div class = "speakers">
 	<h1>Speakers</h1>
+	<div class = "divider"></div>
 	<script type = "text/html">
-		<li class = "span4" id = "speaker-<%=s.id%>">
-			<img data-src = "<%= s.pic %>"/>
-			<h3>
-				<%= s.name %>
-			</h3>
-			<p>
-				<a href = "#home/sessions/<%= s.id%>"><%= s.sessionName %>	</a>
-			</p>
+		<li class = "span3" id = "speaker-<%=s.id%>">
+			<div class = "thumbnail">
+				<img src = "<%= s.pic %>"/>
+				<h3>
+					<%= s.name %></h3>
+				<p>
+					<a href = "#home/sessions/<%= s.id%>"><%= s.sessionName %></a>
+				</p>
+			</div>
 		</li>
 		</script>
-	<ul class = "thumbnails speakerContent">
-	</ul>
+	<ul class = "thumbnails sessionContent"></ul>
 </div>
 <script type = "text/javascript">
-	new app.View.Speakers({
+	app.currentViews.push(new app.View.Sessions({
 		el : ".speakers",
-		collection : app.sessionList
-	});
+		collection : app.sessionList,
+		dataFunc: app.sessionList.getSpeakers
+	}));
 </script>

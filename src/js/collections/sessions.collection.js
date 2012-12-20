@@ -7,7 +7,7 @@
 			this.db = options.db;
 		},
 
-		getSpeakers: function() {
+		getSpeakers: function(id) {
 			return _.compact(_.map(this.toJSON(), function(session) {
 				if(session.speaker && session.speaker.name) {
 					return _.extend({
@@ -18,10 +18,15 @@
 			}));
 		},
 
-		getSessions: function(){
-			return _.filter(this.toJSON(), function(session){
-				return !!session.speaker.name;
-			});
+		getSessions: function(id) {
+			if(id) {
+				var res = this.get(id);
+				return res ? [res.toJSON()]: [];
+			} else {
+				return _.filter(this.toJSON(), function(session) {
+					return !!session.speaker.name;
+				});
+			}
 		}
 
 	});

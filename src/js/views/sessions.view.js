@@ -4,18 +4,29 @@
 
 	app.View.Sessions = Backbone.View.extend({
 		initialize: function() {
+			_.bindAll(this);
 			this.lineItem = _.template(this.$("script").text().trim().replace(/\t/g, ""));
-			this.collection.on("reset", _.bind(this.render, this));
-			this.collection.fetch();
+			this.render();
+			this.listenTo(this.collection, "reset", this.render);
+			this.listenTo(this, "navigate", this.onNavigate);
+			this.path = undefined;
 		},
 		render: function() {
-			_.each(this.collection.getSessions(), _.bind(this.addSession, this));
+			this.$(".sessionContent").empty();
+			var data = this.options.dataFunc.call(this.collection, this.item);
+			_.each(data, this.addSession);
 		},
 
-		addSession: function(session) {
-			this.$(".sessionContent").append(this.lineItem({
-				s: session
-			}))
+		addSession: function(s) {
+			s && this.$(".sessionContent").append(this.lineItem({
+				s: s
+			}));
+		},
+
+		onNavigate: function(path) {
+			this.item = path[2];
+			this.render();
 		}
+
 	});
 }(jQuery, Backbone, window.app = window.app || {}));

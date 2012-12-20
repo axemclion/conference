@@ -15,9 +15,12 @@
 		defaultRoute: function(actions) {
 			var path = _.compact(actions.split("/"));
 			console.log("Showing - ", path);
-
+			_.each(app.currentViews, function(view) {
+				view.remove();
+			});
+			app.currentViews = [];
 			(function loadPathSegment(i) {
-				if(i < path.length) {
+				if(i < path.length && i < 2) {
 					$(".level" + i + "Nav").children("li").removeClass("active");
 					$(".level" + i + "Nav").find("a[href*=" + path[i] + "]").parent("li").addClass("active");
 					$(".level" + i + "Content").load("pages/" + path[i] + ".html", function() {
@@ -28,6 +31,9 @@
 					if(content.length > 0) {
 						window.location = content.attr("href");
 					}
+					_.each(app.currentViews, function(view) {
+						view.trigger("navigate", path);
+					});
 				}
 			}(0));
 		}

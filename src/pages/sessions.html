@@ -8,16 +8,15 @@
 			<p>
 				<%= s.description %>
 			</p>
-			<p>
-			</p>
 		</li>
 		</script>
 	<ul class = "sessionContent">
 	</ul>
 </div>
 <script type = "text/javascript">
-	new app.View.Sessions({
+	app.currentViews.push(new app.View.Sessions({
 		el : ".sessions",
-		collection : app.sessionList
-	});
+		collection : app.sessionList,
+		dataFunc: app.sessionList.getSessions,
+	}));
 </script>

@@ -8,6 +8,7 @@
 			"server" : "http://localhost:2020",
 			"db" : "sessions"
 		});
+		app.sessionList.fetch();
 		Backbone.history.start();
 	});
 }());
