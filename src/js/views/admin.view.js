@@ -5,11 +5,6 @@
 	app.View.Admin = Backbone.View.extend({
 		initialize: function(config) {
 			this.template = this.$("script").text().trim().replace(/\t/g, "");
-			_.mixin({
-				capitalize: function(string) {
-					return string.charAt(0).toUpperCase() + string.substring(1).replace(/([A-Z])/g, " $1");
-				}
-			});
 			this.initModel();
 			this.render();
 		},

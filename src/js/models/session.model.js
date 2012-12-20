@@ -22,3 +22,9 @@
 		}
 	});
 }(jQuery, window.app = window.app || {}));
+
+_.mixin({
+	capitalize: function(string) {
+		return string.charAt(0).toUpperCase() + string.substring(1).replace(/([A-Z])/g, " $1");
+	}
+});
