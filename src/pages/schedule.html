@@ -2,4 +2,64 @@
 	<div class = "page-header">
 		<h1>Schedule</h1>
 	</div>
+	<div class = "content"></div>
+	<script type = "text/html" class = "day">
+		<ul class="nav nav-tabs">
+			<% _.each(days, function(day, key){ %>
+				<li data-date=".daySched-<%=key %>">
+					<a href = "#"><%=moment(key, "YYYY/MM/DD").format("dddd - Do MMM, YYYY")%></a>
+				</li>
+			<%});%>
+		</ul>
+		<% _.each(days, function(sched, day){ %>
+			<div class = "hide daySched daySched-<%=day%>">
+			</div>
+		<% });%>
+	</script>
+
+	<script type = "text/html" class = "row">
+		<div class = "row-fluid row-hover">
+			<div class = "span<%=1 + 11 % rooms.length %> alert alert-warning">
+				<%= moment(time).format("hh:mm")%>
+			</div>
+			<%= sessions %>
+		</div>
+	</script>
+	<script type = "text/html" class = "session">
+		<div class = "span<%= s.get('room') === '*' ? 11 - 11 % rooms.length : Math.floor(11/rooms.length) %>">
+			<div class ="img-rounded well"> 
+				<div class = "pagination-centered">
+					<h4><%= s.get("name") %></h4>
+					<em>
+						<a href = "#home/speakers/<%= encodeURIComponent(s.get("speaker").pic) %>"><%= s.get("speaker").name %></a>
+					</em>
+				</div>
+				<div class="btn-toolbar pagination-right">
+					<div class="btn-group">
+						<a class="btn btnLike btn-small" title = "Liked this session" data-sessionid="<%=s.id%>">
+							<i class="icon-thumbs-up"></i>
+						</a>
+						<a class="btn btnUnlike btn-small" title = "Did not like this session" data-sessionid="<%=s.id%>" >
+							<i class="icon-thumbs-down"></i>
+						</a>
+					</div>
+					<span class = "<% if (!s.get('speaker').name){%> hide <%}%>">
+						<a class="btn btnStar btn-small" title = "Planning to attend the session"  data-sessionid="<%=s.id%>">
+							<i class="icon-star"></i>
+						</a>
+						<a class="btn btnComment btn-small" title = "View comments for session"  data-sessionid="<%=s.id%>">
+							<i class="icon icon-edit"></i>  Notes
+						</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</script>
+
+	<script type="text/javascript">
+		app.currentViews.push(new app.View.Schedule({
+			el : ".schedule",
+			collection : app.sessionList
+		}));
+	</script>
 </div>

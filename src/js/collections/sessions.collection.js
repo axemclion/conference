@@ -30,7 +30,6 @@
 				});
 			}
 		}
-
 	});
 
 }(jQuery, window.app = window.app || {}));
