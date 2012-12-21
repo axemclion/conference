@@ -2,7 +2,7 @@ Backbone.ajaxSync = Backbone.sync;
 Backbone.sync = (function() {
 	return function(method, model, options, error) {
 		console.log("Sync - ", method, model, options, error);
-		Pouch((model.server || model.get("server")) + "/" + (model.db || model.get("db")), function(err, db) {
+		Pouch((model.server || model.get("server")), function(err, db) {
 			if(err) {
 				options.error(err);
 				return;

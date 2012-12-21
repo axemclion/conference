@@ -35,7 +35,7 @@
 					</em>
 				</div>
 				<div class="btn-toolbar pagination-right">
-					<div class="btn-group">
+					<div class="btn-group btnLikeUnlike">
 						<a class="btn btnLike btn-small" title = "Liked this session" data-sessionid="<%=s.id%>">
 							<i class="icon-thumbs-up"></i>
 						</a>
@@ -60,6 +60,11 @@
 		app.currentViews.push(new app.View.Schedule({
 			el : ".schedule",
 			collection : app.sessionList
+		}));
+		app.currentViews.push(new app.View.UserPrefs({
+			el : ".schedule",
+			model: app.user,
+			dataFunc: app.sessionList.getSessions,
 		}));
 	</script>
 </div>

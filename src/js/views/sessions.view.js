@@ -29,30 +29,15 @@
 		},
 
 		onNavigate: function(path) {
-			path[2] && this.$(".viewall").show();
-			this.item = path[2];
-			this.render();
-		},
-
-		onThumbs: function(e) {
-			var target = $(e.currentTarget);
-			var isOn = target.hasClass("on");
-			target.parent().children(".btnLike, .btnUnlike").removeClass("on btn-success btn-danger");
-			if(!isOn) {
-				target.addClass("on " + (target.hasClass("btnLike") ? "btn-success" : "btn-danger"));
+			if(!path[2]) {
+				return;
 			}
-			return false;
-		},
-
-		onStar: function(e) {
-			var target = $(e.currentTarget);
-			target.toggleClass("btn-warning");
-		},
-
-		events: {
-			"click .btnLike": "onThumbs",
-			"click .btnUnlike": "onThumbs",
-			"click .btnStar": "onStar"
+			this.$(".viewall").show();
+			var me = this;
+			this.$(".sessionContent li").hide();
+			_.each(this.options.dataFunc.call(this.collection, path[2]), function(val, key) {
+				me.$("#item-" + val.id).show();
+			});
 		}
 
 	});

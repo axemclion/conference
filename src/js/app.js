@@ -2,25 +2,23 @@
 	$.getScript("config.js", function() {
 		app.currentViews = [];
 		app.router = new app.Router();
+
 		app.sessionList = new app.Collection.SessionList({
 			model: app.Model.Session
 		}, {
-			"server": CONFERENCE.server,
-			"db": CONFERENCE.db.sessions
+			"server": CONF.remote.sessions,
 		});
-		app.sessionList.fetch();
 
 		app.user = new app.Model.User({
-			server : CONFERENCE.server,
-			db : CONFERENCE.db.user
+			server : CONF.remote.userprefs
 		});
-		app.user.fetch();
 
-		//app.user.save();
 		app.userView = new app.View.User({
 			el: "body",
 			model: app.user
 		});
+
+		app.sessionList.fetch();
 		Backbone.history.start();
 	});
 }());

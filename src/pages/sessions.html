@@ -8,7 +8,7 @@
 		</h1>
 	</div>
 	<script type = "text/html">
-		<li class = "well" id = "session-<%=s.id%>">
+		<li class = "well" id = "item-<%=s.id%>">
 			<h3>
 				<%= s.name %></h3>
 			<h5>
@@ -20,7 +20,7 @@
 			<p class = "muted"> <i class= "icon-map-marker"></i>&nbsp;&nbsp;<%= s.room%></p>
 			<div class=  "pull-right">
 			<div class="btn-toolbar">
-				<div class="btn-group">
+				<div class="btn-group btnLikeUnlike">
 					<a class="btn btnLike btn-small" title = "Liked this session" data-sessionid="<%=s.id%>">
 						<i class="icon-thumbs-up"></i>
 					</a>
@@ -46,6 +46,11 @@
 	app.currentViews.push(new app.View.Sessions({
 		el : ".sessions",
 		collection : app.sessionList,
+		dataFunc: app.sessionList.getSessions,
+	}));
+	app.currentViews.push(new app.View.UserPrefs({
+		el : ".sessions",
+		model: app.user,
 		dataFunc: app.sessionList.getSessions,
 	}));
 </script>
