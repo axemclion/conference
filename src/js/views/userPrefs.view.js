@@ -24,7 +24,7 @@
 			var $el = $(el);
 			var data = this.model.get("sessions")[$el.data("sessionid")];
 			if(data) {
-				$el.addClass(data.star ? "active btn-warning" : "");
+				$el.addClass(data.star ? "active btn-info" : "");
 			}
 		},
 
@@ -50,7 +50,7 @@
 
 		onStar: function(e) {
 			var target = $(e.currentTarget)
-			target.toggleClass("btn-warning");
+			target.toggleClass("btn-info");
 			this.changeProp(target, "star", !target.hasClass("active"));
 		},
 

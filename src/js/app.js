@@ -31,7 +31,6 @@
 				}
 			});
 		} else {
-			console.log("Fetching");
 			app.user.fetch();
 			app.sessionList.fetch();
 		}

@@ -4,7 +4,7 @@ Backbone.sync = (function() {
 		options.error = options.error ||
 		function() {};
 		console.log("Sync - ", method, model, options, error);
-		Pouch((model.server || model.get("server")), function(err, db) {
+		Pouch(model.server || model.get("server"), function(err, db) {
 			if(err) {
 				options.error(err);
 				return;

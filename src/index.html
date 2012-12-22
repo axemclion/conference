@@ -22,21 +22,42 @@
 							<a href="#home/schedule">Home</a>
 						</li>
 						<li>
-							<a href="#admin">Admin</a>
-						</li>
-						<li>
 							<a href="#about">About</a>
 						</li>
 					</ul>
-					<ul class="nav pull-right">
-						<li class = "userId">
-							<script type = "text/html">
-								<span href = "#" tite = "Click here to change your user name"> <i class ="icon-user icon-white"></i>
-									<%= userName %></span>
-							</script>
-							<a class = "userName"></a>
-						</li>
-					</ul>
+					<div class="btn-group pull-right user-options">
+						<a class="btn btn-small dropdown-toggle userId" data-toggle="dropdown">
+							<script type = "text/html"> <i class ="icon-user"></i>&nbsp;&nbsp;
+								<%= userName %></script>
+							<span class = "userName"></span>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class = "change-name">
+								<a tabindex = "1" href - "#">Change Name</a>
+							</li>
+							<li class = "existing-user">
+								<a tabindex = "2" href - "#">Existing User</a>
+							</li>
+							<li class = "new-session">
+								<a tabindex = "3" href - "#">New Session</a>
+							</li>
+							<li class = "divider"></li>
+							<li class = "admin-user">
+								<a tabindex = "4" href - "#admin"> <i class = "icon-certificate"></i>
+									Admin
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="btn-group pull-right btnConnection" data-toggle="buttons-radio">
+						<a rel="popover" title="Go online and sync data to server" data-placement = "bottom" class="btnOnline btn btn-small btn-success active">
+							<i class = "icon-signal"></i>
+						</a>
+						<a rel="tooltip" title="Offline Mode - get all data to this computer" class="btnOffline btn btn-small btn-danger">
+							<i class = "icon-off"></i>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -45,23 +66,24 @@
 		<link rel = "defaultContent" href = "#home"/>
 	</div>
 
+	<div class="modals"></div>
+
 	<script type = "text/html" class = "userPrefsToolbar">
 		<div class="btn-toolbar">
 			<div class="btnLikeUnlike btn-group" data-toggle="buttons-radio">
-				<button class="btn btnLike btn-small" title = "Liked this session" data-sessionid="<%=s.id%>">
-					<i class="icon-thumbs-up"></i>
+				<button class="btn btnLike btn-small" title = "Liked this session" data-sessionid="<%=s.id%>"> <i class="icon-thumbs-up"></i>
 				</button>
 				<button class="btn btnUnlike btn-small" title = "Did not like this session" data-sessionid="<%=s.id%>" >
 					<i class="icon-thumbs-down"></i>
 				</button>
 			</div>
 			<span class = "<%if (s.speaker && !s.speaker.name) { %> hide <% }%>">
-				<button class="btn btnStar btn-small" data-toggle="button" title = "Planning to attend the session"  data-sessionid="<%=s.id%>">
-					<i class="icon-star"></i>
-				</button>
-				<button class="btn btnComment btn-small" title = "View comments for session"  data-sessionid="<%=s.id%>">
+				<a rel="tooltip" class="btn btnStar btn-small" data-toggle="button" title = "Bookmark this session, if planning to attend"  data-sessionid="<%=s.id%>">
+					<i class="icon-bookmark"></i>
+				</a>
+				<a class="btn btnComment btn-small" title = "View comments for session"  data-sessionid="<%=s.id%>">
 					<i class="icon icon-edit"></i>  Notes
-				</button>
+				</a>
 			</span>
 		</div>
 	</script>
@@ -69,7 +91,7 @@
 	<script type="text/javascript" src="./lib/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="./lib/underscore-min.js"></script>
 	<script type="text/javascript" src="./lib/moment.js"></script>
-	<script type="text/javascript" src="./lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./lib/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="./lib/backbone-min.js"></script>
 	<script type="text/javascript" src="./lib/pouch.alpha.js"></script>
 	<script type="text/javascript" src="./main.js"></script>
