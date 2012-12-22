@@ -35,22 +35,7 @@
 					</em>
 				</div>
 				<div class="btn-toolbar pagination-right">
-					<div class="btn-group btnLikeUnlike">
-						<a class="btn btnLike btn-small" title = "Liked this session" data-sessionid="<%=s.id%>">
-							<i class="icon-thumbs-up"></i>
-						</a>
-						<a class="btn btnUnlike btn-small" title = "Did not like this session" data-sessionid="<%=s.id%>" >
-							<i class="icon-thumbs-down"></i>
-						</a>
-					</div>
-					<span class = "<% if (!s.get('speaker').name){%> hide <%}%>">
-						<a class="btn btnStar btn-small" title = "Planning to attend the session"  data-sessionid="<%=s.id%>">
-							<i class="icon-star"></i>
-						</a>
-						<a class="btn btnComment btn-small" title = "View comments for session"  data-sessionid="<%=s.id%>">
-							<i class="icon icon-edit"></i>  Notes
-						</a>
-					</span>
+					<%= userPrefsToolbar %> 
 				</div>
 			</div>
 		</div>
@@ -60,11 +45,6 @@
 		app.currentViews.push(new app.View.Schedule({
 			el : ".schedule",
 			collection : app.sessionList
-		}));
-		app.currentViews.push(new app.View.UserPrefs({
-			el : ".schedule",
-			model: app.user,
-			dataFunc: app.sessionList.getSessions,
 		}));
 	</script>
 </div>

@@ -9,6 +9,12 @@
 			this.rowTmpl = this.getTemplate("row");
 			this.dayTmpl = this.getTemplate("day");
 
+			this.toolbar = new app.View.UserPrefs({
+				el: this.$el,
+				model: app.user
+			});
+			app.currentViews.push(this.toolbar);
+
 			this.render();
 			this.listenTo(this.collection, "reset", this.render);
 		},
@@ -26,7 +32,11 @@
 			this.$(".content").html(this.dayTmpl({
 				days: days
 			}));
+
 			_.each(days, this.renderDay);
+			this.toolbar.setStates();
+
+
 			window.setTimeout(function() {
 				this.$(".content .nav-tabs li:first").click();
 			}, 100);
@@ -55,7 +65,8 @@
 				_.each(times[i], function(session) {
 					sessions.push(me.sessionTmpl({
 						s: session,
-						rooms: rooms
+						rooms: rooms,
+						userPrefsToolbar: me.toolbar.getHTML(session.toJSON())
 					}));
 				});
 				html.push(me.rowTmpl({

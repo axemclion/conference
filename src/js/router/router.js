@@ -32,7 +32,9 @@
 						window.location = content.attr("href");
 					}
 					_.each(app.currentViews, function(view) {
-						view.trigger("navigate", path);
+						window.setTimeout(function() {
+							view.trigger("navigate", path);
+						}, 1);
 					});
 				}
 			}(0));

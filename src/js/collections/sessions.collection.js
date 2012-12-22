@@ -4,7 +4,6 @@
 		model: app.Model.Session,
 		initialize: function(models, options) {
 			this.server = options.server;
-			this.db = options.db;
 		},
 
 		getSpeakers: function(pic) {

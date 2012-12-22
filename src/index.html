@@ -31,10 +31,8 @@
 					<ul class="nav pull-right">
 						<li class = "userId">
 							<script type = "text/html">
-								<span href = "#" tite = "Click here to change your user name">
-									<i class ="icon-user icon-white"></i>
-									<%= userName %>
-								</span>
+								<span href = "#" tite = "Click here to change your user name"> <i class ="icon-user icon-white"></i>
+									<%= userName %></span>
 							</script>
 							<a class = "userName"></a>
 						</li>
@@ -46,9 +44,32 @@
 	<div class="container-fluid level0Content">
 		<link rel = "defaultContent" href = "#home"/>
 	</div>
+
+	<script type = "text/html" class = "userPrefsToolbar">
+		<div class="btn-toolbar">
+			<div class="btnLikeUnlike btn-group" data-toggle="buttons-radio">
+				<button class="btn btnLike btn-small" title = "Liked this session" data-sessionid="<%=s.id%>">
+					<i class="icon-thumbs-up"></i>
+				</button>
+				<button class="btn btnUnlike btn-small" title = "Did not like this session" data-sessionid="<%=s.id%>" >
+					<i class="icon-thumbs-down"></i>
+				</button>
+			</div>
+			<span class = "<%if (s.speaker && !s.speaker.name) { %> hide <% }%>">
+				<button class="btn btnStar btn-small" data-toggle="button" title = "Planning to attend the session"  data-sessionid="<%=s.id%>">
+					<i class="icon-star"></i>
+				</button>
+				<button class="btn btnComment btn-small" title = "View comments for session"  data-sessionid="<%=s.id%>">
+					<i class="icon icon-edit"></i>  Notes
+				</button>
+			</span>
+		</div>
+	</script>
+
 	<script type="text/javascript" src="./lib/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="./lib/underscore-min.js"></script>
 	<script type="text/javascript" src="./lib/moment.js"></script>
+	<script type="text/javascript" src="./lib/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./lib/backbone-min.js"></script>
 	<script type="text/javascript" src="./lib/pouch.alpha.js"></script>
 	<script type="text/javascript" src="./main.js"></script>

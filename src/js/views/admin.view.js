@@ -11,8 +11,7 @@
 
 		initModel: function() {
 			this.newSession = new app.Model.Session({
-				server : CONFERENCE.server,
-				db : CONFERENCE.db.sessions
+				server : CONF.remote.server
 			});
 		},
 

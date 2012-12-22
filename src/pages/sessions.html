@@ -19,23 +19,7 @@
 			<p>
 			<p class = "muted"> <i class= "icon-map-marker"></i>&nbsp;&nbsp;<%= s.room%></p>
 			<div class=  "pull-right">
-			<div class="btn-toolbar">
-				<div class="btn-group btnLikeUnlike">
-					<a class="btn btnLike btn-small" title = "Liked this session" data-sessionid="<%=s.id%>">
-						<i class="icon-thumbs-up"></i>
-					</a>
-					<a class="btn btnUnlike btn-small" title = "Did not like this session" data-sessionid="<%=s.id%>" >
-						<i class="icon-thumbs-down"></i>
-					</a>
-				</div>
-				&nbsp;&nbsp;&nbsp;
-				<a class="btn btnStar btn-small" title = "Planning to attend the session"  data-sessionid="<%=s.id%>">
-					<i class="icon-star"></i>
-				</a>
-				<a class="btn btnComment btn-small" title = "View comments for session"  data-sessionid="<%=s.id%>">
-					<i class="icon icon-edit"></i>  Notes
-				</a>
-			</div>
+				<%= userPrefsToolbar %> 
 			</div>
 			<div class = "clearfix"></div>
 		</li>
@@ -46,11 +30,6 @@
 	app.currentViews.push(new app.View.Sessions({
 		el : ".sessions",
 		collection : app.sessionList,
-		dataFunc: app.sessionList.getSessions,
-	}));
-	app.currentViews.push(new app.View.UserPrefs({
-		el : ".sessions",
-		model: app.user,
 		dataFunc: app.sessionList.getSessions,
 	}));
 </script>

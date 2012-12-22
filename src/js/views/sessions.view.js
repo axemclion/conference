@@ -6,25 +6,29 @@
 		initialize: function() {
 			_.bindAll(this);
 			this.lineItem = _.template(this.$("script").text().trim().replace(/\t/g, ""));
+			this.toolbar = new app.View.UserPrefs({
+				el: this.$el,
+				model: app.user
+			});
+			app.currentViews.push(this.toolbar);
 			this.render();
-
 			this.listenTo(this.collection, "reset", this.render);
-			this.listenTo(app.user, "reset", this.render);
 
 			this.listenTo(this, "navigate", this.onNavigate);
 			this.path = undefined;
 		},
 
-		render: function() {
+		render: function(from) {
 			this.$(".sessionContent").empty();
 			var data = this.options.dataFunc.call(this.collection, this.item);
 			_.each(data, this.addSession);
+			this.toolbar.setStates();
 		},
 
 		addSession: function(s) {
 			s && this.$(".sessionContent").append(this.lineItem({
 				s: s,
-				user: app.user.get("sessions")[s.id] || {}
+				userPrefsToolbar: this.toolbar.getHTML(s)
 			}));
 		},
 

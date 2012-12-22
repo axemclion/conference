@@ -1,6 +1,8 @@
 Backbone.ajaxSync = Backbone.sync;
 Backbone.sync = (function() {
 	return function(method, model, options, error) {
+		options.error = options.error ||
+		function() {};
 		console.log("Sync - ", method, model, options, error);
 		Pouch((model.server || model.get("server")), function(err, db) {
 			if(err) {
@@ -10,11 +12,22 @@ Backbone.sync = (function() {
 			switch(method) {
 			case "read":
 				if(model.id) {
-					throw "Not implemented yet";
+					db.get(model.id, {}, function(err, doc) {
+						if(err) {
+							options.error(err);
+							return;
+						}
+						doc.id = doc._id;
+						options.success(doc);
+					});
 				} else {
 					db.allDocs({
 						include_docs: true
 					}, function(err, resp) {
+						if(err) {
+							options.error(err);
+							return;
+						}
 						options.success(_.map(resp.rows, function(a) {
 							a.doc.id = a.doc._id;
 							return a.doc;

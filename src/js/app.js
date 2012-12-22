@@ -10,15 +10,34 @@
 		});
 
 		app.user = new app.Model.User({
-			server : CONF.remote.userprefs
+			server: CONF.remote.userprefs
 		});
-
 		app.userView = new app.View.User({
 			el: "body",
 			model: app.user
 		});
 
-		app.sessionList.fetch();
+
+		app.user.id = window.localStorage.getItem("userId");
+		if(!app.user.id) {
+			app.user.save("browser", navigator.userAgent, {
+				success: function() {
+					console.log("Successfully saved userid", app.user.attributes);
+					window.localStorage.setItem("userId", app.user.id);
+					app.sessionList.fetch();
+				},
+				error: function() {
+					alert("Error occured when trying to save the user");
+				}
+			});
+		} else {
+			console.log("Fetching");
+			app.user.fetch();
+			app.sessionList.fetch();
+		}
+
+
+
 		Backbone.history.start();
 	});
 }());
