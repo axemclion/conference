@@ -4,18 +4,20 @@
 	</div>
 	<div class = "divider"></div>
 	<script type = "text/html">
-		<li class = "span3" id = "item-<%=s.id%>">
+		<li id = "item-<%=s.id%>" class= "span3">
 			<div class = "thumbnail">
 				<img src = "<%= s.pic %>"/>
-				<h3>
-					<%= s.name %></h3>
+				<h4>
+					<%= s.name %></h4>
 				<p>
 					<a href = "#home/sessions/<%= s.id%>"><%= s.sessionName %></a>
 				</p>
 			</div>
 		</li>
-		</script>
-	<ul class = "thumbnails sessionContent"></ul>
+	</script>
+	<div class = "row-fluid">
+		<ul class = "thumbnails sessionContent"></ul>
+	</div>
 </div>
 <script type = "text/javascript">
 	app.currentViews.push(new app.View.Sessions({
