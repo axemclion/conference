@@ -82,7 +82,21 @@
 		<link rel = "defaultContent" href = "#home"/>
 	</div>
 
-	<div class="modals"></div>
+	<div class="modals">
+		<div id="notesModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Notes</h3>
+				<h5 class = "session-title"></h5>
+			</div>
+			<div class="modal-body">
+				<p><textarea class = "session-notes" placeholder = "Enter notes here. They are automatically saved when you close this dialog"></textarea></p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			</div>
+		</div>
+	</div>
 
 	<script type = "text/html" class = "userPrefsToolbar">
 		<div class="btn-toolbar">
@@ -97,7 +111,7 @@
 				<a rel="tooltip" class="btn btnStar btn-small" data-toggle="button" title = "Bookmark this session, if planning to attend"  data-sessionid="<%=s.id%>">
 					<i class="icon-bookmark"></i>
 				</a>
-				<a class="btn btnComment btn-small" title = "View comments for session"  data-sessionid="<%=s.id%>">
+				<a href = "#notesModal" data-toggle="modal" class="btn btnNotes btn-small" title = "View comments for session"  data-sessionid="<%=s.id%>" data-title = "<%=s.name%>">
 					<i class="icon icon-edit"></i>  Notes
 				</a>
 			</span>

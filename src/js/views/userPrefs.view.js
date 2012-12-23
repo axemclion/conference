@@ -64,10 +64,28 @@
 			this.model.save();
 		},
 
+		showNotes: function(e) {
+			var modal = $("#notesModal").on("hidden.notes", this.onNotesClosed);
+			var sessionId = $(e.currentTarget).data("sessionid")
+			modal.data("sessionid", sessionId);
+			var sessions = this.model.get("sessions");
+			if(typeof sessions[sessionId] === "undefined") {
+				return;
+			}
+			modal.find(".session-notes").val(sessions[sessionId].notes || "");
+			modal.find(".session-title").html($(e.currentTarget).data("title"));
+		},
+
+		onNotesClosed: function(e) {
+			var modal = $("#notesModal").off("hidden.notes");
+			this.changeProp(modal, "notes", modal.find("textarea").val());
+		},
+
 		events: {
 			"click .btnLike": "onThumbs",
 			"click .btnUnlike": "onThumbs",
-			"click .btnStar": "onStar"
+			"click .btnStar": "onStar",
+			"click .btnNotes": "showNotes"
 		}
 
 	});
