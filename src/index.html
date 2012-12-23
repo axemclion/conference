@@ -26,10 +26,25 @@
 						</li>
 					</ul>
 					<div class="btn-group pull-right user-options">
-						<a class="btn btn-small dropdown-toggle userId" data-toggle="dropdown">
-							<script type = "text/html"> <i class ="icon-user"></i>&nbsp;&nbsp;
-								<%= userName %></script>
+						<a class="btn btn-small userDetails" data-placement="bottom" data-html="true" title="User Information">
+							<script type = "text/html" class = "userNameTmpl"> <i class ="icon-user"></i>&nbsp;&nbsp;
+								<%= userName %>
+							</script>
 							<span class = "userName"></span>
+						</a>
+						<script type = "text/html" class = "userDetailsTmpl">
+							<div>
+								Name: <%= u.get('name') %>
+							</div>
+							<div>
+								<small>
+								<a target = "_blank" href = "<%= CONF.remote.userprefs %>/<%= u.id%>">
+									<%= u.id %>
+								</a>
+								</small>
+							</div>
+						</script>
+						<a class = "btn btn-small dropdown-toggle" data-toggle="dropdown">
 							<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
@@ -37,10 +52,10 @@
 								<a tabindex = "1" href - "#">Change Name</a>
 							</li>
 							<li class = "existing-user">
-								<a tabindex = "2" href - "#">Existing User</a>
+								<a tabindex = "3" href - "#">Existing User</a>
 							</li>
 							<li class = "new-session">
-								<a tabindex = "3" href - "#">New Session</a>
+								<a tabindex = "4" href - "#">New Session</a>
 							</li>
 							<li class = "divider"></li>
 							<li class = "admin-user">
@@ -51,10 +66,11 @@
 						</ul>
 					</div>
 					<div class="btn-group pull-right btnConnection" data-toggle="buttons-radio">
-						<a rel="popover" title="Go online and sync data to server" data-placement = "bottom" class="btnOnline btn btn-small btn-success active">
+						<a rel="tooltip" class="btnOnline btn btn-small btn-success active" data-placement="bottom" data-html="true" data-content="Syncing data to servers ... " data-title = "Back online !!">
 							<i class = "icon-signal"></i>
 						</a>
-						<a rel="tooltip" title="Offline Mode - get all data to this computer" class="btnOffline btn btn-small btn-danger">
+						<span></span>
+						<a rel="tooltip" class="btnOffline btn btn-small btn-danger dropdown-toggle" data-placement="bottom" data-html="true" data-content = "Saving data locally ... " data-title = "Going offline">
 							<i class = "icon-off"></i>
 						</a>
 					</div>
@@ -87,13 +103,12 @@
 			</span>
 		</div>
 	</script>
-
+	<script type="text/javascript" src="./lib/pouch.alpha.js"></script>
 	<script type="text/javascript" src="./lib/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="./lib/underscore-min.js"></script>
 	<script type="text/javascript" src="./lib/moment.js"></script>
-	<script type="text/javascript" src="./lib/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="./lib/backbone-min.js"></script>
-	<script type="text/javascript" src="./lib/pouch.alpha.js"></script>
+	<script type="text/javascript" src="./lib/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="./main.js"></script>
 </body>
 </html>

@@ -7,6 +7,12 @@
 			_.bindAll(this);
 			this.render();
 			this.model.on("change:name", this.showName);
+			this.userDetailsTmpl = _.template(this.$("script.userDetailsTmpl").text().trim().replace(/\t/g, ""));
+			this.initPopovers();
+		},
+
+		initPopovers: function() {
+			$(".btnOnline, .btnOffline").popover();
 		},
 
 		render: function() {
@@ -15,21 +21,31 @@
 
 		showName: function() {
 			var me = this;
-			$(".userId").each(function(el) {
-				var $this = $(this);
-				var template = _.template($this.find("script").text().trim().replace(/\t/g, ""));
-				$this.find(".userName").html(template({
+			var template = _.template(this.$("script.userNameTmpl:first").text().trim().replace(/\t/g, ""));
+			$(".userName").each(function(i, el) {
+				$(el).html(template({
 					userName: me.model.get("name")
 				}));
 			});
 		},
 
 		message: function(msg, type) {
-			$("#docMessage").html(msg);
+			$("#docMessage").html(msg).addClass(type);
+		},
+
+		adminPage: function() {
+
+		},
+
+		changeName: function() {
+			this.model.set("name", prompt("Enter a name", this.model.get("name")) || this.model.get("name"));
+			this.model.save();
+			return false;
 		},
 
 		changeUser: function() {
-			this.model.set("name", prompt("Enter a name") || this.model.get("name"));
+			window.localStorage.setItem("userId", prompt("Enter an existing User ID", this.model.id));
+			//window.location.reload();
 		},
 
 		newSession: function() {
@@ -37,28 +53,42 @@
 			window.location.reload();
 		},
 
-		adminPage: function() {
-
-		},
-
-		online: function() {
+		sync: function(e) {
+			var target = $(e.currentTarget);
+			var popover = target.next(".popover");
+			popover.find("button.close").length === 0 && popover.prepend("<button type='button' class='close' data-dismiss='alert'>&times;</button>");
+			Pouch.replicate(CONF.remote.sessions, CONF.local.sessions, function(err, db) {
+				popover.find(".popover-content").append("<br/>&#10003; Sessions Data");
+			});
 			Pouch.replicate(CONF.local.userprefs, CONF.remote.userprefs, function() {
-				console.log("REPLICATE", arguments);
+				popover.find(".popover-content").append("<br/>&#10003; User Perferences");
 			});
 		},
 
-		offline: function() {
-			alert("Offline");
+		showUserDetails: function(e) {
+			var me = this;
+			var target = $(e.currentTarget).popover({
+				content: function() {
+					return me.userDetailsTmpl({
+						u: me.model,
+						CONF: CONF
+					})
+				}
+			});
+			var popover = target.next(".popover");
+			popover.find("button.close").length === 0 && popover.prepend("<button type='button' class='close' data-dismiss='alert'>&times;</button>");
+
 		},
 
 		events: {
-			"click .user-options .change-name": "changeUser",
+			"click .user-options .change-name": "changeName",
 			"click .user-options .new-session": "newSession",
 			"click .user-options .existing-user": "changeUser",
 			"click .user-options .admin-user": "adminPage",
+			"click .user-options .userDetails": "showUserDetails",
 
-			"click .btnConnection .btnOnline": "online",
-			"click .btnConnection .btnOffline": "offline"
+			"click .btnConnection .btnOnline": "sync",
+			"click .btnConnection .btnOffline": "sync"
 		}
 
 	});

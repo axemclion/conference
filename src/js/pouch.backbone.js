@@ -1,12 +1,14 @@
 Backbone.ajaxSync = Backbone.sync;
 Backbone.sync = (function() {
 	return function(method, model, options, error) {
-		options.error = options.error ||
-		function() {};
-		console.log("Sync - ", method, model, options, error);
+		var error = options.error ||
+		function(err) {
+			console.error(err);
+		};
+		console.log("Sync - ", method, model.attributes, options);
 		Pouch(model.server || model.get("server"), function(err, db) {
 			if(err) {
-				options.error(err);
+				error(err);
 				return;
 			}
 			switch(method) {
@@ -14,7 +16,7 @@ Backbone.sync = (function() {
 				if(model.id) {
 					db.get(model.id, {}, function(err, doc) {
 						if(err) {
-							options.error(err);
+							error(err);
 							return;
 						}
 						doc.id = doc._id;
@@ -25,7 +27,7 @@ Backbone.sync = (function() {
 						include_docs: true
 					}, function(err, resp) {
 						if(err) {
-							options.error(err);
+							error(err);
 							return;
 						}
 						options.success(_.map(resp.rows, function(a) {
@@ -46,7 +48,7 @@ Backbone.sync = (function() {
 				//console.log("Getting model id", model.id);
 				db.get(model.id, function(err, resp) {
 					if(err) {
-						options.error(err);
+						error(err);
 						return;
 					}
 					//console.log("Updating ", model.toJSON(), model._rev);
@@ -55,7 +57,7 @@ Backbone.sync = (function() {
 						_id: resp._id
 					}), function(err, updatedData) {
 						if(err) {
-							options.error(err);
+							error(err);
 							return;
 						}
 						//console.log("Updated data ", updatedData);

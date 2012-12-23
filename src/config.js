@@ -4,7 +4,7 @@ window.CONF = {
 		userprefs : "http://localhost:2020/userprefs-test1",
 	},
 	local : {
-		localhost: "idb://sessions",
-		localhost: "idb://userprefs",
+		sessions: "idb://sessions",
+		userprefs: "idb://userprefs",
 	}
 }

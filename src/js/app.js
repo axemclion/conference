@@ -6,11 +6,11 @@
 		app.sessionList = new app.Collection.SessionList({
 			model: app.Model.Session
 		}, {
-			"server": CONF.remote.sessions,
+			"server": CONF.local.sessions,
 		});
 
 		app.user = new app.Model.User({
-			server: CONF.remote.userprefs
+			server: CONF.local.userprefs
 		});
 		app.userView = new app.View.User({
 			el: "body",
