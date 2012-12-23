@@ -17,14 +17,19 @@
 			<p>
 				<%= s.description %></p>
 			<p>
-			<p class = "muted"> <i class= "icon-map-marker"></i>&nbsp;&nbsp;<%= s.room%></p>
+			<p class = "muted">
+				<i class= "icon-map-marker"></i>&nbsp;&nbsp;<%=s.room%>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class= "icon-tags"></i><% _.each(s.tags, function(t){ %>
+					<span class = "label"><%=t%></span>
+				<% }); %>
+			</p>
 			<div class=  "pull-right">
 				<%= userPrefsToolbar %> 
 			</div>
 			<div class = "clearfix"></div>
 		</li>
 		</script>
-	<ul class = "sessionContent"></ul>
+	<ul class = "unstyled sessionContent"></ul>
 </div>
 <script type = "text/javascript">
 	app.currentViews.push(new app.View.Sessions({
