@@ -26,9 +26,17 @@
 		app.sessionList.once("reset", function(sessions) {
 			if(sessions.models.length === 0) {
 				$("#loader").modal("show");
-				Pouch.replicate(CONF.remote.sessions, CONF.local.sessions, function(err, db) {
-					app.sessionList.fetch();
+				$.getScript("sessions.js").then(function(data) {
 					$("#loader").modal("hide");
+					_.each(CONF.sessions, function(s) {
+						var model = new app.Model.Session(s);
+						model.server = CONF.local.sessions
+						model.save();
+						app.sessionList.add(model);
+					});
+					app.sessionList.fetch();
+				}).fail(function() {
+					alert("Could not load sessions");
 				});
 			} else {
 				$("#loader").modal("hide");

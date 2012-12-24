@@ -6,10 +6,10 @@
 			this.server = options.server;
 		},
 
-		getSpeakers: function(pic) {
+		getSpeakers: function(url) {
 			return _.compact(_.map(this.toJSON(), function(session) {
 				if(session.speaker && session.speaker.name) {
-					if((pic && decodeURIComponent(pic) === session.speaker.pic) || !pic) {
+					if((url && decodeURIComponent(url) === session.speaker.url) || !url) {
 						return _.extend({
 							id: session.id,
 							sessionName: session.name

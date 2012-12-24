@@ -3,7 +3,7 @@ Backbone.sync = (function() {
 	return function(method, model, options, error) {
 		var error = options.error ||
 		function(err) {
-			console.error(err);
+			console.error("Error occured when ", method, err, model);
 		};
 		console.log("Sync - ", method, model.attributes, options);
 		Pouch(model.server || model.get("server"), function(err, db) {
