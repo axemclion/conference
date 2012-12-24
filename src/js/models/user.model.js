@@ -4,7 +4,8 @@
 	app.Model.User = Backbone.Model.extend({
 		defaults: {
 			name: "Anonymous",
-			sessions: {}
+			sessions: {},
+			people : {}
 		}
 	});
 }(jQuery, window.app = window.app || {}));

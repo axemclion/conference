@@ -1,7 +1,21 @@
-Conference Schedule
-===================
+# Conference
 
-An application that shows the schedules for a conference. Supports the schedule to be available offline.
 
-Building
---------
+## Building
+
+The application is a set of static HTML, Javascript and Less file.
+
+### Requirements
+
+* Nodejs
+* Grunt
+* CouchDB 
+* Any web server
+
+### Development
+
+Run `npm install` to install all the dependencies required for building the project. 
+
+### Deployment
+
+Run `npm install` 

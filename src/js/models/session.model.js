@@ -9,14 +9,14 @@
 				name: '',
 				bio: '',
 				url: '',
-				pic: 'http://'
+				pic: ''
 			},
 			time: {
 				start: new Date(),
 				end: new Date()
 			},
 			slideUrl: '',
-			room: "*",
+			room: "",
 			tags: [],
 			category: ''
 		}

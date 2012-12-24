@@ -9,6 +9,12 @@
 			"server": CONF.local.sessions,
 		});
 
+		app.users = new app.Collection.Users({
+			model: app.Model.User
+		}, {
+			"server": CONF.remote.userprefs
+		});
+
 		app.user = new app.Model.User({
 			server: CONF.local.userprefs
 		});
@@ -17,6 +23,17 @@
 			model: app.user
 		});
 
+		app.sessionList.once("reset", function(sessions) {
+			if(sessions.models.length === 0) {
+				$("#loader").modal("show");
+				Pouch.replicate(CONF.remote.sessions, CONF.local.sessions, function(err, db) {
+					app.sessionList.fetch();
+					$("#loader").modal("hide");
+				});
+			} else {
+				$("#loader").modal("hide");
+			}
+		});
 
 		app.user.id = window.localStorage.getItem("userId");
 		if(!app.user.id) {
@@ -34,7 +51,6 @@
 			app.user.fetch();
 			app.sessionList.fetch();
 		}
-
 
 
 		Backbone.history.start();

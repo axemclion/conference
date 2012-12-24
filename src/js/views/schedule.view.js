@@ -26,7 +26,8 @@
 		render: function() {
 			var me = this;
 			var days = _.groupBy(this.collection.models, function(s) {
-				return moment(s.get("time").start).format("YYYY-MM-DD");
+				var time = s.get("time").start || new Date();
+				return moment(time).format("YYYY-MM-DD");
 			});
 
 			this.$(".content").html(this.dayTmpl({

@@ -11,40 +11,41 @@
 
 		initModel: function() {
 			this.newSession = new app.Model.Session({
-				server : CONF.remote.server
+				server: CONF.remote.sessions
 			});
 		},
 
 		render: function() {
 			function flatten(group, obj) {
 				return _.flatten(_.map(obj, function(val, key) {
-					if(_.isObject(val)) {
+					if(_.isObject(val) && !_.isDate(val) && !_.isArray(val)) {
 						return flatten(key, val);
 					} else {
-						return group + " " + key;
+						return group + key;
 					}
 				}));
 			}
 			this.$(".adminContent").html(_.template(this.template, {
-				fields: flatten('', _.omit(this.newSession.attributes, ['server', 'db']))
+				fields: flatten('', _.omit(this.newSession.attributes, ['server']))
 			}));
 		},
 
 		getFormValues: function() {
 			var me = this;
 
-			function getValues(obj) {
+			function getValues(group, obj) {
 				var result = {};
 				_.each(obj, function(val, key, list) {
-					if(_.isObject(val)) {
-						result[key] = getValues(val);
+					console.log("#session_" + group + key);
+					if(_.isObject(val) && !_.isDate(val) && !_.isArray(val)) {
+						result[key] = getValues(key, val);
 					} else {
-						result[key] = me.$("#session_" + val).val();
+						result[key] = me.$("#session_" + group + key).val();
 					}
 				});
 				return result;
 			}
-			return this.sanitize(getValues(this.newSession.attributes));
+			return this.sanitize(getValues('', _.omit(this.newSession.attributes, ['server'])));
 		},
 
 		sanitize: function(val) {
