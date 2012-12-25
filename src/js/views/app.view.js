@@ -27,7 +27,7 @@
 					userName: me.model.get("name")
 				}));
 			});
-			$(".remoteProfile").attr("href", "http://axemclion.iriscouch.com/_utils/document.html?userprefs/"+ window.localStorage.getItem("userId"));
+			$(".remoteProfile").attr("href", "http://axemclion.iriscouch.com/_utils/document.html?userprefs/" + window.localStorage.getItem("userId"));
 		},
 
 		message: function(msg, type) {
@@ -63,14 +63,13 @@
 
 		sync: function(e) {
 			var target = $(e.currentTarget);
+			app.ONLINE = !target.hasClass("btnOffline");
 			var popover = target.next(".popover");
 			popover.find("button.close").length === 0 && popover.prepend("<button type='button' class='close' data-dismiss='alert'>&times;</button>");
-			app.loadSessionsFromFile(function() {
-				popover.find(".popover-content").append("<br/>&#10003; Session Data");
+			app.replicate(function(text) {
+				popover.find(".popover-content").append("<br/>&#10003;  " + text);
 			});
-			Pouch.replicate(CONF.local.userprefs, CONF.remote.userprefs, function() {
-				popover.find(".popover-content").append("<br/>&#10003; User Perferences");
-			});
+			
 		},
 
 		showUserDetails: function(e) {

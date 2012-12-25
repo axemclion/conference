@@ -71,6 +71,15 @@
 			});
 		}
 
+		app.replicate = function(callback, type) {
+			app.loadSessionsFromFile(function() {
+				callback("Sessions Data");
+			})
+			Pouch.replicate(CONF.local.userprefs, CONF.remote.userprefs, function() {
+				callback("User Perferences");
+			});
+		}
+
 		Backbone.history.start();
 	});
 }());

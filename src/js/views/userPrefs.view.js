@@ -62,6 +62,9 @@
 			}
 			sessions[sessionId][prop] = val;
 			this.model.save();
+			app.ONLINE && Pouch.replicate(CONF.local.userprefs, CONF.remote.userprefs, function() {
+				console.log("Replicated User prefs");
+			});
 		},
 
 		showNotes: function(e) {
