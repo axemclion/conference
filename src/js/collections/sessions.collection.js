@@ -7,7 +7,7 @@
 		},
 
 		getSpeakers: function(url) {
-			return _.compact(_.map(this.toJSON(), function(session) {
+			return _.uniq(_.compact(_.map(this.toJSON(), function(session) {
 				if(session.speaker && session.speaker.name) {
 					if((url && decodeURIComponent(url) === session.speaker.url) || !url) {
 						return _.extend({
@@ -16,7 +16,9 @@
 						}, session.speaker);
 					}
 				}
-			}));
+			})), function(s){
+				return s.url;
+			});
 		},
 
 		getSessions: function(id) {

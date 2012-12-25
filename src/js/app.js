@@ -25,21 +25,7 @@
 
 		app.sessionList.once("reset", function(sessions) {
 			if(sessions.models.length === 0) {
-				$("#loader").modal("show");
-				$.getScript("sessions.js").then(function(data) {
-					$("#loader").modal("hide");
-					_.each(CONF.sessions, function(s) {
-						var model = new app.Model.Session(s);
-						model.server = CONF.local.sessions
-						model.save();
-						app.sessionList.add(model);
-					});
-					app.sessionList.fetch();
-				}).fail(function() {
-					alert("Could not load sessions");
-				});
-			} else {
-				$("#loader").modal("hide");
+				app.loadSessionsFromFile();
 			}
 		});
 
@@ -60,6 +46,29 @@
 			app.sessionList.fetch();
 		}
 
+		app.loadSessionsFromFile = function() {
+			$("#loader").modal("show");
+			$.getScript("sessions.js?" + Math.random()).then(function(data) {
+				$("#loader").modal("hide");
+				_.each(CONF.sessions, function(s) {
+					var models = app.sessionList.where({
+						name: s.name
+					});
+					if(models.length === 0) {
+						model = new app.Model.Session();
+					} else {
+						model = models[0];
+					}
+					model.set(s);
+					model.server = CONF.local.sessions;
+					model.save();
+					app.sessionList.add(model);
+				});
+				app.sessionList.fetch();
+			}).fail(function() {
+				alert("Could not load sessions");
+			});
+		}
 
 		Backbone.history.start();
 	});
