@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 			},
 			pages: {
 				files: {
-					"./dist/pages/": ["./src/pages/*.html"]
+					"./dist/pages/": ["./src/pages/*.*"]
 				}
 			}
 		},
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
 				tasks: ["copy:html"]
 			},
 			pages: {
-				files: "src/pages/*.html",
+				files: ["src/pages/*.html", "src/pages/*.md"],
 				tasks: ["copy:pages"]
 			}
 		},
