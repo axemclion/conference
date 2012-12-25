@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 			},
 			html: {
 				files: {
-					"./dist/": ["./src/*.html", "./src/config.js", "./src/sessions.js", "./src/main.appcache"],
+					"./dist/": ["./src/main.appcache", "./src/*.html", "./src/config.js", "./src/sessions.js", "./src/main.appcache"],
 				}
 			},
 			pages: {
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 				tasks: ["less"]
 			},
 			html: {
-				files: ["src/*.html", "src/config.js", "src/sessions.js"],
+				files: ["src/*.html", "src/config.js", "src/sessions.js", "src/main.appcache"],
 				tasks: ["copy:html"]
 			},
 			pages: {

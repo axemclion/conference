@@ -1,5 +1,12 @@
 (function() {
-	$.getScript("config.js", function() {
+	$.ajax({
+		url: "config.js",
+		dataType: "script",
+		success: start,
+		cache: true
+	});
+
+	function start() {
 		app.currentViews = [];
 		app.router = new app.Router();
 
@@ -46,41 +53,40 @@
 			//console.log("Starting out here");
 			app.user.fetch();
 		}
-
-		app.loadSessionsFromFile = function(callback) {
-			$("#loader").modal("show");
-			$.getScript("sessions.js?" + Math.random()).then(function(data) {
-				$("#loader").modal("hide");
-				_.each(CONF.sessions, function(s) {
-					var models = app.sessionList.where({
-						name: s.name
-					});
-					if(models.length === 0) {
-						model = new app.Model.Session();
-					} else {
-						model = models[0];
-					}
-					model.set(s);
-					model.server = CONF.local.sessions;
-					model.save();
-					app.sessionList.add(model);
-				});
-				app.sessionList.fetch();
-				_.isFunction(callback) && callback();
-			}).fail(function() {
-				alert("Could not load sessions");
-			});
-		}
-
-		app.replicate = function(callback, type) {
-			app.loadSessionsFromFile(function() {
-				callback("Sessions Data");
-			})
-			Pouch.replicate(CONF.local.userprefs, CONF.remote.userprefs, function() {
-				callback("User Perferences");
-			});
-		}
-
 		Backbone.history.start();
-	});
+	}
+
+	app.loadSessionsFromFile = function(callback) {
+		$("#loader").modal("show");
+		$.getScript("sessions.js?" + Math.random()).then(function(data) {
+			$("#loader").modal("hide");
+			_.each(CONF.sessions, function(s) {
+				var models = app.sessionList.where({
+					name: s.name
+				});
+				if(models.length === 0) {
+					model = new app.Model.Session();
+				} else {
+					model = models[0];
+				}
+				model.set(s);
+				model.server = CONF.local.sessions;
+				model.save();
+				app.sessionList.add(model);
+			});
+			app.sessionList.fetch();
+			_.isFunction(callback) && callback();
+		}).fail(function() {
+			alert("Could not load sessions");
+		});
+	}
+
+	app.replicate = function(callback, type) {
+		app.loadSessionsFromFile(function() {
+			callback("Sessions Data");
+		})
+		Pouch.replicate(CONF.local.userprefs, CONF.remote.userprefs, function() {
+			callback("User Perferences");
+		});
+	}
 }());
