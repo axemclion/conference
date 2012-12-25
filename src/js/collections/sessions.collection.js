@@ -6,19 +6,25 @@
 			this.server = options.server;
 		},
 
-		getSpeakers: function(url) {
-			return _.uniq(_.compact(_.map(this.toJSON(), function(session) {
-				if(session.speaker && session.speaker.name) {
-					if((url && decodeURIComponent(url) === session.speaker.url) || !url) {
+		getSpeakers: function(id) {
+			if(id) {
+				var s = this.get(id);
+				return s ? [_.extend({
+					id: id,
+					sessionName: s.get("name")
+				}, s.get("speaker"))] : [];
+			} else {
+				return _.uniq(_.compact(_.map(this.toJSON(), function(session) {
+					if(session.speaker && session.speaker.name) {
 						return _.extend({
 							id: session.id,
 							sessionName: session.name
 						}, session.speaker);
 					}
-				}
-			})), function(s){
-				return s.url;
-			});
+				})), function(s) {
+					return s.url;
+				});
+			}
 		},
 
 		getSessions: function(id) {

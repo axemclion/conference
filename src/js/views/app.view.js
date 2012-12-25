@@ -27,7 +27,7 @@
 					userName: me.model.get("name")
 				}));
 			});
-			$(".remoteProfile").attr("href", "http:/http://axemclion.iriscouch.com/_utils/document.html?userprefs/"+ window.localStorage.getItem("userId"));
+			$(".remoteProfile").attr("href", "http://axemclion.iriscouch.com/_utils/document.html?userprefs/"+ window.localStorage.getItem("userId"));
 		},
 
 		message: function(msg, type) {
