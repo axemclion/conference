@@ -1,0 +1,50 @@
+<div class = "schedule">
+	<div class = "page-header">
+		<h1>Schedule</h1>
+	</div>
+	<div class = "content"></div>
+	<script type = "text/html" class = "day">
+		<ul class="nav nav-tabs">
+			<% _.each(days, function(day, key){ %>
+				<li data-date=".daySched-<%=key %>">
+					<a href = "#"><%=moment(key, "YYYY/MM/DD").format("dddd - Do MMM, YYYY")%></a>
+				</li>
+			<%});%>
+		</ul>
+		<% _.each(days, function(sched, day){ %>
+			<div class = "hide daySched daySched-<%=day%>">
+			</div>
+		<% });%>
+	</script>
+
+	<script type = "text/html" class = "row">
+		<div class = "row-fluid row-hover">
+			<div class = "span<%=1 + 11 % rooms.length %> alert alert-warning">
+				<%= moment(time).format("hh:mm")%>
+			</div>
+			<%= sessions %>
+		</div>
+	</script>
+	<script type = "text/html" class = "session">
+		<div class = "span<%= s.get('room') === '*' ? 11 - 11 % rooms.length : Math.floor(11/rooms.length) %>">
+			<div class ="img-rounded well well-small"> 
+				<div class = "pagination-centered">
+					<h4><%= s.get("name") %></h4>
+					<em>
+						<a href = "#home/speakers/<%= encodeURIComponent(s.get("speaker").pic) %>"><%= s.get("speaker").name %></a>
+					</em>
+				</div>
+				<div class="btn-toolbar pagination-right">
+					<%= userPrefsToolbar %> 
+				</div>
+			</div>
+		</div>
+	</script>
+
+	<script type="text/javascript">
+		app.currentViews.push(new app.View.Schedule({
+			el : ".schedule",
+			collection : app.sessionList
+		}));
+	</script>
+</div>

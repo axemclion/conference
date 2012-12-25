@@ -1,0 +1,28 @@
+<div class = "speakers">
+	<div class = "page-header">
+		<h1>Speakers <small class = "hide viewall"><a href = "#home/speakers">(view all)</a></small></h1>
+	</div>
+	<div class = "divider"></div>
+	<script type = "text/html">
+		<li id = "item-<%=s.id%>" class= "span3">
+			<div class = "thumbnail">
+				<img src = "<%= s.pic %>"/>
+				<h4>
+					<%= s.name %></h4>
+				<p>
+					<a href = "#home/sessions/<%= s.id%>"><%= s.sessionName %></a>
+				</p>
+			</div>
+		</li>
+	</script>
+	<div class = "row-fluid">
+		<ul class = "thumbnails sessionContent"></ul>
+	</div>
+</div>
+<script type = "text/javascript">
+	app.currentViews.push(new app.View.Sessions({
+		el : ".speakers",
+		collection : app.sessionList,
+		dataFunc: app.sessionList.getSpeakers
+	}));
+</script>

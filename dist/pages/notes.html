@@ -1,0 +1,43 @@
+<div class = "notes">
+	<div class = "page-header">
+		<h1>
+			Notes
+			<small class = "hide viewall">
+				<a href = "#home/notes">(view all)</a>
+			</small>
+		</h1>
+	</div>
+	<script type = "text/html">
+		<li class = "well well-small" id = "item-<%=s.id%>" data-sessionid="<%=s.id%>">
+			<h4>
+				<a href = "#home/sessions/<%=s.id%>"><%= s.name %></a>
+			<h4>
+			<p class = "lead edit-notes well well-small">
+				<%= s.notes %></p>
+			<p>
+			<textarea class = "span12 editor hide lead"><%=s.notes%></textarea>
+			<div class = "editor hide pull-right">
+				<button type = "button" class ="btn cancel-notes" >Cancel</button>
+				<button type = "button" class = "btn btn-primary save-notes">Save</button>
+			</div>
+			<small>
+				Speaker: <a title = "Speaker" href = "#home/speakers/<%= encodeURIComponent(s.speaker.pic) %>"><%= s.speaker.name %></a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class = "icon-tags"></i>
+				<% _.each(s.tags, function(t){ %>
+					<span class = "label"><%=t%></span>
+				<% }); %>
+			</small>
+			<div class = "clearfix"></div>
+		</li>
+	</script>	
+	<p class = "lead pagination-left">
+		Take notes from the <a href = "#home/sessions">sessions</a> page
+	</p>
+	<ul class = "unstyled sessionContent"></ul>
+</div>
+<script type = "text/javascript">
+	app.currentViews.push(new app.View.Notes({
+		el : ".notes",
+		collection : app.sessionList
+	}));
+</script>

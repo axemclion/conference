@@ -1,0 +1,42 @@
+<div class = "sessions">
+	<div class = "page-header">
+		<h1>
+			Sessions
+			<small class = "hide viewall">
+				<a href = "#home/sessions">(view all)</a>
+			</small>
+		</h1>
+	</div>
+	<script type = "text/html">
+		<li class = "well" id = "item-<%=s.id%>">
+			<h3>
+				<%= s.name %></h3>
+			<h5>
+				by <a title = "Speaker" href = "#home/speakers/<%= encodeURIComponent(s.speaker.url) %>"><%= s.speaker.name %></a>
+			</h5>
+			<p>
+				<%= s.description %>
+			</p>
+			<div class = "row-fluid">
+				<div class = "muted pull-left">
+					<i class= "icon-map-marker"></i>&nbsp;&nbsp;<%=s.room%>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class= "icon-tags"></i><% _.each(s.tags, function(t){ %>
+						<span class = "label"><%=t%></span>
+					<% }); %>
+				</div>
+				<div class= "pull-right">
+					<%= userPrefsToolbar %> 
+				</div>
+			</div>
+			<div class = "clearfix"></div>
+		</li>
+		</script>
+	<ul class = "unstyled sessionContent"></ul>
+</div>
+<script type = "text/javascript">
+	app.currentViews.push(new app.View.Sessions({
+		el : ".sessions",
+		collection : app.sessionList,
+		dataFunc: app.sessionList.getSessions,
+	}));
+</script>

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Conference</title>
+	<link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap.min.css">
+	<!--link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap-theme.min.css"-->
+	<link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" type="text/css" href="main.css"></head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="#home/schedule">Conference</a>
+				<div class="nav-collapse collapse" style="height: 0px;">
+					<ul class="nav level1Nav">
+						<li>
+							<a href="#home/schedule">Home</a>
+						</li>
+						<li>
+							<a href="#about">About</a>
+						</li>
+					</ul>
+					<div class="btn-group pull-right user-options">
+						<a class="btn btn-small userDetails" data-placement="bottom" data-html="true" title="User Information">
+							<script type = "text/html" class = "userNameTmpl"> <i class ="icon-user"></i>&nbsp;&nbsp;
+								<%= userName %></script>
+							<span class = "userName"></span>
+						</a>
+						<script type = "text/html" class = "userDetailsTmpl">
+							<div>
+								Name: <%= u.get('name') %></div>
+							<div>
+								<small>
+								<a target = "_blank" href = "<%= CONF.remote.userprefs %>/<%= u.id%>">
+									<%= u.id %></a>
+								</small>
+							</div>
+						</script>
+						<a class = "btn btn-small dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class = "change-name">
+								<a tabindex = "1" href - "#">Change Name</a>
+							</li>
+							<li class = "existing-user">
+								<a tabindex = "3" href - "#">Existing User</a>
+							</li>
+							<li class = "new-session">
+								<a tabindex = "4" href - "#">New Session</a>
+							</li>
+							<li class = "divider"></li>
+							<li class = "admin-user">
+								<a class = "remoteProfile" target = "_blank" href = "http://axemclion.iriscouch.com/_utils/document.html?userprefs/">
+									Remote User Profile
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="btn-group pull-right btnConnection" data-toggle="buttons-radio">
+						<a rel="tooltip" class="btnOnline btn btn-small btn-success active" data-placement="bottom" data-html="true" data-content="Syncing data to servers ... " data-title = "Back online !!">
+							<i class = "icon-signal"></i>
+						</a>
+						<span></span>
+						<a rel="tooltip" class="btnOffline btn btn-small btn-danger dropdown-toggle" data-placement="bottom" data-html="true" data-content = "Saving data locally ... " data-title = "Going offline">
+							<i class = "icon-off"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid level0Content">
+		<link rel = "defaultContent" href = "#home"/>
+	</div>
+
+	<div class="modals">
+		<div id="notesModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h3 id="myModalLabel">Notes</h3>
+				<h5 class = "session-title"></h5>
+			</div>
+			<div class="modal-body">
+				<p>
+					<textarea class = "session-notes" placeholder = "Enter notes here. They are automatically saved when you close this dialog"></textarea>
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			</div>
+		</div>
+		<div id="loader" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<h3 id="myModalLabel">Downloading</h3>
+			</div>
+			<div class="modal-body">
+				<p>Downloading Session data for first time</p>
+				<div class="progress progress-striped">
+					<div class="bar" style="width: 20%;"></div>
+				</div>
+			</div>
+			<div class="modal-footer"></div>
+		</div>
+	</div>
+
+	<script type = "text/html" class = "userPrefsToolbar">
+		<div class="btn-toolbar">
+			<div class="btnLikeUnlike btn-group" data-toggle="buttons-radio">
+				<button class="btn btnLike btn-small" title = "Liked this session" data-sessionid="<%=s.id%>"> <i class="icon-thumbs-up"></i>
+				</button>
+				<button class="btn btnUnlike btn-small" title = "Did not like this session" data-sessionid="<%=s.id%>" >
+					<i class="icon-thumbs-down"></i>
+				</button>
+			</div>
+			<span class = "<%if (s.speaker && !s.speaker.name) { %> hide <% }%>">
+				<a rel="tooltip" class="btn btnStar btn-small" data-toggle="button" title = "Bookmark this session, if planning to attend"  data-sessionid="<%=s.id%>">
+					<i class="icon-bookmark"></i>
+				</a>
+				<a href = "#notesModal" data-toggle="modal" class="btn btnNotes btn-small" title = "View comments for session"  data-sessionid="<%=s.id%>" data-title = "<%=s.name%>">
+					<i class="icon icon-edit"></i>  Notes
+				</a>
+			</span>
+		</div>
+	</script>
+	<script type="text/javascript" src="http://nparashuram.com/IndexedDBShim/dist/IndexedDBShim.min.js"></script>
+	<script type="text/javascript" src="./lib/pouch.alpha.js"></script>
+	<script type="text/javascript" src="./lib/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="./lib/underscore-min.js"></script>
+	<script type="text/javascript" src="./lib/moment.js"></script>
+	<script type="text/javascript" src="./lib/backbone-min.js"></script>
+	<script type="text/javascript" src="./lib/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="./lib/Markdown.Converter.js"></script>
+	<script type="text/javascript" src="./main.js"></script>
+</body>
+</html>

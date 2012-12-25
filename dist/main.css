@@ -1,0 +1,55 @@
+body {
+  padding-top: 40px;
+}
+body #loading {
+  margin-top: 70px;
+  height: 20px;
+}
+body #docMessage {
+  position: absolute;
+  z-index: 3000;
+  margin-left: 10%;
+  width: 76%;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-left: 12%;
+  margin-right: 12%;
+  top: 50px;
+}
+body .level1Nav {
+  margin-top: 30px;
+}
+body .level1Nav .input-append {
+  margin-top: 5px;
+}
+body .admin {
+  margin-top: 20px;
+}
+body .speakers li {
+  margin-left: 0px !important;
+  margin-right: 20px;
+}
+body .speakers .thumbnail {
+  min-height: 330px;
+}
+body .speakers .thumbnail img {
+  width: 100%;
+  max-height: 260px;
+}
+body .btn-toolbar .btnLikeUnlike,
+body .btn-toolbar .btnStar {
+  margin-right: 5px;
+}
+body .btnConnection {
+  margin-right: 10px;
+}
+body .popover button.close {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+body #notesModal textarea {
+  width: 94%;
+  margin-left: 2%;
+  margin-right: 2%;
+  height: 100px;
+}

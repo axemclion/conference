@@ -1,0 +1,10 @@
+<div class = "container" id = "aboutContent"></div>
+<script type = "text/javascript">
+	$.ajax({
+		url: "pages/about.md",
+		dataType: "text"
+	}).done(function(s) {
+		var converter = new Markdown.Converter();
+		$("#aboutContent").html(converter.makeHtml(s));
+	});
+</script>
