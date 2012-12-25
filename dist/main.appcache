@@ -1,0 +1,48 @@
+CACHE MANIFEST
+# 2013-12-25:v7
+
+# Explicitly cached 'master entries'.
+CACHE:
+index.html
+main.css
+main.js
+config.js
+lib/IndexedDBShim.min.js
+lib/pouch.alpha.js
+lib/Markdown.Converter.js
+lib/backbone-min.js
+lib/jquery-1.8.3.min.js
+lib/json2.js
+lib/moment.js
+lib/pouch.alpha.min.js
+lib/underscore-min.js
+lib/bootstrap/css/bootstrap-theme.min.css
+lib/bootstrap/css/bootstrap-responsive.css
+lib/bootstrap/css/bootstrap-responsive.min.css
+lib/bootstrap/css/bootstrap.css
+lib/bootstrap/css/bootstrap.min.css
+lib/bootstrap/js/bootstrap.js
+lib/bootstrap/js/bootstrap.min.js
+lib/bootstrap/img/glyphicons-halflings-white.png
+lib/bootstrap/img/glyphicons-halflings.png
+pages/Readme.md
+pages/about.html
+pages/about.md
+pages/admin.html
+pages/home.html
+pages/notes.html
+pages/people.html
+pages/schedule.html
+pages/sessions.html
+pages/speakers.html
+http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700
+http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff
+http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff
+
+
+# Resources that require the user to be online.
+NETWORK:
+sessions.js
+http://axe-corsproxy.herokuapp.com/*
+
+FALLBACK:

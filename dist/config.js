@@ -5,8 +5,8 @@ window.CONF = {
 	},
 */
 	remote: {
-		sessions: "http://axe-corsproxy.herokuapp.com//sessions",
-		userprefs: "http://axe-corsproxy.herokuapp.com//userprefs"
+		sessions: "http://axe-corsproxy.herokuapp.com/sessions",
+		userprefs: "http://axe-corsproxy.herokuapp.com/userprefs"
 	},
 
 	local: {
