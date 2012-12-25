@@ -27,6 +27,7 @@
 					userName: me.model.get("name")
 				}));
 			});
+			$(".remoteProfile").attr("href", $(".remoteProfile").attr("href") + window.localStorage.getItem("userId"));
 		},
 
 		message: function(msg, type) {
