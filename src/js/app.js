@@ -24,26 +24,27 @@
 		});
 
 		app.sessionList.once("reset", function(sessions) {
-			if(sessions.models.length === 0) {
+			if(sessions.models.length <= 2) {
 				app.loadSessionsFromFile();
 			}
 		});
+		app.sessionList.fetch();
 
 		app.user.id = window.localStorage.getItem("userId");
 		if(!app.user.id) {
 			app.user.save("browser", navigator.userAgent, {
 				success: function() {
-					console.log("Successfully saved userid", app.user.attributes);
+					//console.log("Successfully saved userid", app.user.attributes);
 					window.localStorage.setItem("userId", app.user.id);
-					app.sessionList.fetch();
+
 				},
 				error: function() {
 					alert("Error occured when trying to save the user");
 				}
 			});
 		} else {
+			//console.log("Starting out here");
 			app.user.fetch();
-			app.sessionList.fetch();
 		}
 
 		app.loadSessionsFromFile = function(callback) {
