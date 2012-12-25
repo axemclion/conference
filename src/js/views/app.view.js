@@ -27,7 +27,7 @@
 					userName: me.model.get("name")
 				}));
 			});
-			$(".remoteProfile").attr("href", $(".remoteProfile").attr("href") + window.localStorage.getItem("userId"));
+			$(".remoteProfile").attr("href", "http:/http://axemclion.iriscouch.com/_utils/document.html?userprefs/"+ window.localStorage.getItem("userId"));
 		},
 
 		message: function(msg, type) {
@@ -51,7 +51,14 @@
 
 		newSession: function() {
 			window.localStorage.removeItem("userId");
-			window.location.reload();
+			Pouch.destroy(CONF.local.userprefs, function(err, info) {
+				if(err) {
+					alert("Could not delete local IndexedDB");
+				} else {
+					window.location.reload();
+				}
+
+			});
 		},
 
 		sync: function(e) {

@@ -6,8 +6,8 @@ CONF.sessions = [{
 	speaker: {},
 	room: "*",
 	time: {
-		start: new Date("2013-01-04 08:30"),
-		end: new Date("2013-01-04 09:00"),
+		start: new Date("2013/01/04 08:30"),
+		end: new Date("2013/01/04 09:00"),
 	}
 }, {
 	name: "Keynote - The ways of a Jedi",
@@ -23,8 +23,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/9/96/CGIYoda.jpg/200px-CGIYoda.jpg"
 	},
 	time: {
-		start: new Date("2013-01-04 09:00"),
-		end: new Date("2013-01-04 10:00"),
+		start: new Date("2013/01/04 09:00"),
+		end: new Date("2013/01/04 10:00"),
 	}
 },
 
@@ -42,8 +42,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/e/ee/Amidala.png/200px-Amidala.png"
 	},
 	time: {
-		start: new Date("2013-01-04 10:00"),
-		end: new Date("2013-01-04 11:00"),
+		start: new Date("2013/01/04 10:00"),
+		end: new Date("2013/01/04 11:00"),
 	}
 }, {
 	name: "Trust the teacher",
@@ -59,8 +59,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/a/ad/Qui-Gon_Jinn.png/250px-Qui-Gon_Jinn.png"
 	},
 	time: {
-		start: new Date("2013-01-04 10:00"),
-		end: new Date("2013-01-04 11:00"),
+		start: new Date("2013/01/04 10:00"),
+		end: new Date("2013/01/04 11:00"),
 	}
 },
 
@@ -78,8 +78,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/d/dd/Darthmaul_l.jpg"
 	},
 	time: {
-		start: new Date("2013-01-04 11:00"),
-		end: new Date("2013-01-04 12:00"),
+		start: new Date("2013/01/04 11:00"),
+		end: new Date("2013/01/04 12:00"),
 	}
 }, {
 	name: "Dealing with a prodigy",
@@ -95,8 +95,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/0/0b/Ben_Kenobi.jpg/200px-Ben_Kenobi.jpg"
 	},
 	time: {
-		start: new Date("2013-01-04 11:00"),
-		end: new Date("2013-01-04 12:00"),
+		start: new Date("2013/01/04 11:00"),
+		end: new Date("2013/01/04 12:00"),
 	}
 },
 
@@ -108,8 +108,8 @@ CONF.sessions = [{
 	room: "*",
 	slideUrl: "",
 	time: {
-		start: new Date("2013-01-04 12:00"),
-		end: new Date("2013-01-04 13:00"),
+		start: new Date("2013/01/04 12:00"),
+		end: new Date("2013/01/04 13:00"),
 	}
 },
 
@@ -128,8 +128,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/b/bd/Count_Dooku.png/250px-Count_Dooku.png"
 	},
 	time: {
-		start: new Date("2013-01-04 13:00"),
-		end: new Date("2013-01-04 14:00"),
+		start: new Date("2013/01/04 13:00"),
+		end: new Date("2013/01/04 14:00"),
 	}
 }, {
 	name: "The Jedi and the Senate",
@@ -145,8 +145,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/c/ca/Mace_windu_with_saber.jpg/200px-Mace_windu_with_saber.jpg"
 	},
 	time: {
-		start: new Date("2013-01-04 13:00"),
-		end: new Date("2013-01-04 14:00"),
+		start: new Date("2013/01/04 13:00"),
+		end: new Date("2013/01/04 14:00"),
 	}
 }, {
 	name: "Listen to Misa speaking",
@@ -162,8 +162,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/4/4b/Jjportrait.jpg/200px-Jjportrait.jpg"
 	},
 	time: {
-		start: new Date("2013-01-04 14:00"),
-		end: new Date("2013-01-04 15:00"),
+		start: new Date("2013/01/04 14:00"),
+		end: new Date("2013/01/04 15:00"),
 	}
 }, {
 	name: "More the merrier",
@@ -179,8 +179,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/5/58/GeneralGrievous.png/200px-GeneralGrievous.png"
 	},
 	time: {
-		start: new Date("2013-01-04 14:00"),
-		end: new Date("2013-01-04 15:00"),
+		start: new Date("2013/01/04 14:00"),
+		end: new Date("2013/01/04 15:00"),
 	}
 }, {
 	name: "The dark side it is",
@@ -196,8 +196,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/7/76/Darth_Vader.jpg/240px-Darth_Vader.jpg"
 	},
 	time: {
-		start: new Date("2013-01-04 15:00"),
-		end: new Date("2013-01-04 16:00"),
+		start: new Date("2013/01/04 15:00"),
+		end: new Date("2013/01/04 16:00"),
 	}
 },
 
@@ -211,8 +211,8 @@ CONF.sessions = [{
 	speaker: {},
 	room: "*",
 	time: {
-		start: new Date("2013-01-03 08:30"),
-		end: new Date("2013-01-03 09:00"),
+		start: new Date("2013/01/03 08:30"),
+		end: new Date("2013/01/03 09:00"),
 	}
 }, {
 	name: "Keynote - Building a Death Star",
@@ -228,8 +228,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/7/76/Darth_Vader.jpg/240px-Darth_Vader.jpg"
 	},
 	time: {
-		start: new Date("2013-01-03 09:00"),
-		end: new Date("2013-01-03 10:00"),
+		start: new Date("2013/01/03 09:00"),
+		end: new Date("2013/01/03 10:00"),
 	}
 },
 
@@ -247,8 +247,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/0/0a/Palpatine_ROTJ.jpg/200px-Palpatine_ROTJ.jpg"
 	},
 	time: {
-		start: new Date("2013-01-03 10:00"),
-		end: new Date("2013-01-03 11:00"),
+		start: new Date("2013/01/03 10:00"),
+		end: new Date("2013/01/03 11:00"),
 	}
 }, {
 	name: "Smuggling Imperial Secrets",
@@ -264,8 +264,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/1/1b/Princess_Leia%27s_characteristic_hairstyle.jpg/250px-Princess_Leia%27s_characteristic_hairstyle.jpg"
 	},
 	time: {
-		start: new Date("2013-01-03 10:00"),
-		end: new Date("2013-01-03 11:00"),
+		start: new Date("2013/01/03 10:00"),
+		end: new Date("2013/01/03 11:00"),
 	}
 },
 
@@ -283,8 +283,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/f/f4/HanSolo.jpg/200px-HanSolo.jpg"
 	},
 	time: {
-		start: new Date("2013-01-03 11:00"),
-		end: new Date("2013-01-03 12:00"),
+		start: new Date("2013/01/03 11:00"),
+		end: new Date("2013/01/03 12:00"),
 	}
 }, {
 	name: "Destroying the deathstar for fun and profit",
@@ -300,8 +300,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/6/62/LukeSkywalkerROTJV2Wallpaper.jpg/200px-LukeSkywalkerROTJV2Wallpaper.jpg"
 	},
 	time: {
-		start: new Date("2013-01-03 11:00"),
-		end: new Date("2013-01-03 12:00"),
+		start: new Date("2013/01/03 11:00"),
+		end: new Date("2013/01/03 12:00"),
 	}
 },
 
@@ -313,8 +313,8 @@ CONF.sessions = [{
 	room: "*",
 	slideUrl: "",
 	time: {
-		start: new Date("2013-01-03 12:00"),
-		end: new Date("2013-01-03 13:00"),
+		start: new Date("2013/01/03 12:00"),
+		end: new Date("2013/01/03 13:00"),
 	}
 },
 
@@ -333,8 +333,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/6/6d/Chewbacca-2-.jpg/200px-Chewbacca-2-.jpg"
 	},
 	time: {
-		start: new Date("2013-01-03 13:00"),
-		end: new Date("2013-01-03 14:00"),
+		start: new Date("2013/01/03 13:00"),
+		end: new Date("2013/01/03 14:00"),
 	}
 }, {
 	name: "Bleeep beep beep bleeep beep",
@@ -350,8 +350,8 @@ CONF.sessions = [{
 		pic: "http://www.pack73.com/wordpress/wp-content/uploads/2011/04/R2D2.jpg"
 	},
 	time: {
-		start: new Date("2013-01-03 13:00"),
-		end: new Date("2013-01-03 14:00"),
+		start: new Date("2013/01/03 13:00"),
+		end: new Date("2013/01/03 14:00"),
 	}
 }, {
 	name: "Its a trap",
@@ -367,8 +367,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/6/6e/AckbarStanding.jpg"
 	},
 	time: {
-		start: new Date("2013-01-03 14:00"),
-		end: new Date("2013-01-03 15:00"),
+		start: new Date("2013/01/03 14:00"),
+		end: new Date("2013/01/03 15:00"),
 	}
 }, {
 	name: "Let the attack begin",
@@ -384,8 +384,8 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/f/f4/HanSolo.jpg/200px-HanSolo.jpg"
 	},
 	time: {
-		start: new Date("2013-01-03 14:00"),
-		end: new Date("2013-01-03 15:00"),
+		start: new Date("2013/01/03 14:00"),
+		end: new Date("2013/01/03 15:00"),
 	}
 }, {
 	name: "Return of the Jedi",
@@ -401,7 +401,7 @@ CONF.sessions = [{
 		pic: "http://upload.wikimedia.org/wikipedia/en/thumb/6/62/LukeSkywalkerROTJV2Wallpaper.jpg/200px-LukeSkywalkerROTJV2Wallpaper.jpg"
 	},
 	time: {
-		start: new Date("2013-01-03 15:00"),
-		end: new Date("2013-01-03 16:00"),
+		start: new Date("2013/01/03 15:00"),
+		end: new Date("2013/01/03 16:00"),
 	}
 }]
