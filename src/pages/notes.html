@@ -21,7 +21,7 @@
 				<button type = "button" class = "btn btn-primary save-notes">Save</button>
 			</div>
 			<small>
-				Speaker: <a title = "Speaker" href = "#home/speakers/<%= encodeURIComponent(s.speaker.pic) %>"><%= s.speaker.name %></a>
+				Speaker: <a title = "Speaker" href = "#home/speakers/<%= s.id%>"><%= s.speaker.name %></a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class = "icon-tags"></i>
 				<% _.each(s.tags, function(t){ %>
 					<span class = "label"><%=t%></span>
