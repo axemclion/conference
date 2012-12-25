@@ -46,7 +46,7 @@
 			app.sessionList.fetch();
 		}
 
-		app.loadSessionsFromFile = function() {
+		app.loadSessionsFromFile = function(callback) {
 			$("#loader").modal("show");
 			$.getScript("sessions.js?" + Math.random()).then(function(data) {
 				$("#loader").modal("hide");
@@ -65,6 +65,7 @@
 					app.sessionList.add(model);
 				});
 				app.sessionList.fetch();
+				_.isFunction(callback) && callback();
 			}).fail(function() {
 				alert("Could not load sessions");
 			});

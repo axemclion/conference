@@ -57,8 +57,8 @@
 			var target = $(e.currentTarget);
 			var popover = target.next(".popover");
 			popover.find("button.close").length === 0 && popover.prepend("<button type='button' class='close' data-dismiss='alert'>&times;</button>");
-			Pouch.replicate(CONF.remote.sessions, CONF.local.sessions, function(err, db) {
-				popover.find(".popover-content").append("<br/>&#10003; Sessions Data");
+			app.loadSessionsFromFile(function() {
+				popover.find(".popover-content").append("<br/>&#10003; Session Data");
 			});
 			Pouch.replicate(CONF.local.userprefs, CONF.remote.userprefs, function() {
 				popover.find(".popover-content").append("<br/>&#10003; User Perferences");
