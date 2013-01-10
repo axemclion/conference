@@ -1,6 +1,8 @@
 # Conference
 
-An application to fight the flaky internet connections at conferences. 
+An application to fight the flaky internet connections at conferences. More information at the [blog post](http://blog.nparashuram.com/2013/01/a-website-for-dev-conferences-pouchdb.html) or this [demo video](https://www.youtube.com/embed/4eFPTnMbMDM?list=UU6J8UILu9omULlPQqXvL0Dw)
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/4eFPTnMbMDM?list=UU6J8UILu9omULlPQqXvL0Dw" frameborder="0" allowfullscreen></iframe>
 
 ## Building
 
