@@ -32,9 +32,12 @@
 
 		app.sessionList.once("reset", function(sessions) {
 			if(sessions.models.length <= 2) {
-				app.loadSessionsFromFile();
+				app.replicate(function() {
+					sessions.fetch();
+				});
 			}
 		});
+
 		app.sessionList.fetch();
 
 		app.user.id = window.localStorage.getItem("userId");
@@ -56,7 +59,26 @@
 		Backbone.history.start();
 	}
 
-	app.loadSessionsFromFile = function(callback) {
+	app.replicate = function(callback, type) {
+		Pouch.replicate(CONF.local.userprefs, CONF.remote.userprefs, function() {
+			callback("User Perferences");
+		});
+		Pouch.replicate(CONF.remote.sessions, CONF.local.sessions, function() {
+			callback("Session Data");
+		});
+	};
+
+	app.destroy = function() {
+		window.localStorage.clear();
+		Pouch.destroy(CONF.local.userprefs, function() {
+			console.log("Deleted User Preferences", arguments);
+		});
+		Pouch.destroy(CONF.local.sessions, function() {
+			console.log("Deleted User Preferences", arguments);
+		})
+	};
+
+	app.loadSampleSessions = function() {
 		$("#loader").modal("show");
 		$.getScript("sessions.js?" + Math.random()).then(function(data) {
 			$("#loader").modal("hide");
@@ -79,14 +101,6 @@
 		}).fail(function() {
 			alert("Could not load sessions");
 		});
-	}
+	};
 
-	app.replicate = function(callback, type) {
-		app.loadSessionsFromFile(function() {
-			callback("Sessions Data");
-		})
-		Pouch.replicate(CONF.local.userprefs, CONF.remote.userprefs, function() {
-			callback("User Perferences");
-		});
-	}
 }());
