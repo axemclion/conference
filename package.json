@@ -4,20 +4,21 @@
   "version": "0.0.1",
   "author": "Parashuram <code@nparashuram.com>",
   "description": "A simple app to show schedules at a conference",
-  "bin": {
-    "server": "grunt server"
-  },
   "main": "./detlib/http-server",
-  "scripts": {},
+  "scripts": {
+    "start": "grunt dev"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/nodejitsu/http-server.git"
   },
-  "keywords": ["conference"],
+  "keywords": [
+    "conference"
+  ],
   "dependencies": {},
   "devDependencies": {
-    "grunt-jsmin-sourcemap": "~1.5.6",
-    "grunt-contrib": "~0.3.0"
+    "grunt": "~0.4.0",
+    "grunt-contrib": "*"
   },
   "bundledDependencies": [],
   "license": "MIT",

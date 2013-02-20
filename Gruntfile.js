@@ -7,20 +7,23 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
-			lib: {
-				files: {
-					"./dist/lib/": ["./lib/**/*"],
-				}
-			},
 			html: {
-				files: {
-					"./dist/": ["./src/main.appcache", "./src/*.html", "./src/config.js", "./src/sessions.js", "./src/main.appcache"],
-				}
+				src: ['src/*'],
+				dest: 'dist/',
+				flatten: true,
+				expand: true,
+				filter: "isFile"
 			},
 			pages: {
-				files: {
-					"./dist/pages/": ["./src/pages/*.*"]
-				}
+				src: ["src/pages/*"],
+				dest: "dist/pages/",
+				expand: true,
+				flatten: true,
+				filter: "isFile"
+			},
+			lib: {
+				src: "lib/**",
+				dest: "dist/"
 			}
 		},
 
@@ -72,10 +75,13 @@ module.exports = function(grunt) {
 			base: 'http://127.0.0.1:5984',
 			port: 2020
 		},
-		server: {
-			base: '.',
-			port: 8080
+		connect: {
+			server: {
+				base: '.',
+				port: 8080
+			}
 		},
+
 
 		jshint: {
 			options: {
@@ -107,17 +113,15 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-contrib');
-	grunt.loadNpmTasks('grunt-jsmin-sourcemap');
-
 
 	grunt.registerTask("cors-server", "Runs a CORS proxy", function() {
 		var cors = require('./src/server/cors-proxy.js');
 		var url = require('url');
 		var corsUrl = url.parse("http://127.0.0.1:" + (arguments[0] || grunt.config("cors-server.port")));
-		var couchUrl = url.parse(grunt.utils._.toArray(arguments).slice(1).join(":") || grunt.config("cors-server.base"));
+		var couchUrl = url.parse(grunt.util.toArray(arguments).slice(1).join(":") || grunt.config("cors-server.base"));
 		grunt.log.writeln("Starting CORS server " + url.format(corsUrl) + " => " + url.format(couchUrl));
 		cors.init(couchUrl, corsUrl);
 	});
 
-	grunt.registerTask("dev", "copy concat less cors-server server watch");
+	grunt.registerTask("default", ['copy', 'concat', 'less', 'cors-server', 'connect', 'watch']);
 };
